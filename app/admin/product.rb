@@ -32,14 +32,22 @@ ActiveAdmin.register Product do
      f.input :skirt
      f.input :collar
    end
+=begin
    f.inputs 'variant' do
      file_field_tag("images[]", multiple: true, name: "images[]")
    end
-    f.actions
+=end
+   f.actions
+   f.inputs do
+     button_to 'add more variants'
+   end
+
+
   end
   controller do
     def create
     create! do |format|
+=begin
     if params[:images]
       @variant = @product.variants.new(name: 'main')
       #===== The magic is here ;)
@@ -50,8 +58,18 @@ ActiveAdmin.register Product do
       }
 
     end
+=end
+    unless params[:commit]
     format.html {redirect_to new_admin_variant_url({product_id: @product.id})}
+      end
     end
+    end
+    def update
+      update! do |format|
+        unless params[:commit]
+          format.html {redirect_to new_admin_variant_url({product_id: @product.id})}
+        end
+      end
     end
     end
 
