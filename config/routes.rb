@@ -1,5 +1,17 @@
 Rails.application.routes.draw do
+  resources :deliveries
+
+  resources :orders
+
+  get 'orders/show'
+
+  get 'orders/destroy'
+
+  resources :line_items
+
   resources :products
+
+  resources :cart
 
   devise_for :users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)

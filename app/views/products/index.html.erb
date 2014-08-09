@@ -10,11 +10,14 @@
   <tbody>
     <% @products.each do |product| %>
       <tr>
-        <td><%=product.title%></td>
-        <td><%=product.price%></td>
-        <td><%= link_to 'Show', product %></td>
-        <td><%= link_to 'Edit', edit_product_path(product) %></td>
-        <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% product.variants.each do |variant| %>
+        <td>
+          <%=if variant.pictures[0]; image_tag variant.pictures[0].image(:thumb); end%>
+          <br>
+          <%=variant.name%>
+          <%=link_to 'buy', new_line_item_path({variant_id:variant.id})%>
+        </td>
+        <%end%>
       </tr>
     <% end %>
   </tbody>

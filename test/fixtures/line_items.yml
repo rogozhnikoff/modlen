@@ -1,11 +1,59 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-# This model initially had no columns defined.  If you add columns to the
-# model remove the '{}' from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
-#
-one: {}
-# column: value
-#
-two: {}
-#  column: value
+one:
+  units: MyString
+  size: 1
+  age: 1
+  height: 1
+  chest: 1
+  waist: 1
+  hips: 1
+  biceps: 1
+  elbow: 1
+  wrist: 1
+  collar: 1
+  shoulder: 1
+  neck_circle: 1
+  from_neck: 1
+  to_waist: 1
+  to_skirt: 1
+  sleeves: 1
+  skirt: 1
+  body: 1
+  crystal_type: MyString
+  crystal_amount: 1
+  special_request: MyText
+  model_name: MyString
+  price: 9.99
+  product_id: 1
+  variant_id: 1
+  order_id: 1
+
+two:
+  units: MyString
+  size: 1
+  age: 1
+  height: 1
+  chest: 1
+  waist: 1
+  hips: 1
+  biceps: 1
+  elbow: 1
+  wrist: 1
+  collar: 1
+  shoulder: 1
+  neck_circle: 1
+  from_neck: 1
+  to_waist: 1
+  to_skirt: 1
+  sleeves: 1
+  skirt: 1
+  body: 1
+  crystal_type: MyString
+  crystal_amount: 1
+  special_request: MyText
+  model_name: MyString
+  price: 9.99
+  product_id: 1
+  variant_id: 1
+  order_id: 1

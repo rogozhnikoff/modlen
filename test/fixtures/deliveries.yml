@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  delivery_date: 2014-08-08
+  deadline: MyString
+  speed: 1
+  full_name: MyString
+  street: MyString
+  city: MyString
+  state: MyString
+  country: MyString
+  zip: MyString
+  email: MyString
+  tel: MyString
+  info: MyText
+  git_box: false
+
+two:
+  delivery_date: 2014-08-08
+  deadline: MyString
+  speed: 1
+  full_name: MyString
+  street: MyString
+  city: MyString
+  state: MyString
+  country: MyString
+  zip: MyString
+  email: MyString
+  tel: MyString
+  info: MyText
+  git_box: false
