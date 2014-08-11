@@ -1,7 +1,8 @@
 ActiveAdmin.register Product do
 
   permit_params  :name, :price, :old_price, :description, :short_desc, :crystal_type, :crystal_amount,
-                 :sleeves, :skirt, :collar, :stock_for_sale, :title, :public, :images
+                 :sleeves, :skirt, :collar, :stock_for_sale, :title, :public, :images,
+                 texts_attributes: [:id, :language, :description, :short_desc, :title, :_destroy]
   # See permitted parameters documentation:
   # https://github.com/gregbell/active_admin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
@@ -17,9 +18,6 @@ ActiveAdmin.register Product do
   form html: {multipart: true}do |f|
    f.inputs 'Main' do
      f.input :name
-     f.input :description
-     f.input :short_desc
-     f.input :title
      f.input :stock_for_sale
      f.input :price
      f.input :old_price
@@ -32,41 +30,46 @@ ActiveAdmin.register Product do
      f.input :skirt
      f.input :collar
    end
-=begin
-   f.inputs 'variant' do
-     file_field_tag("images[]", multiple: true, name: "images[]")
-   end
-=end
-   f.actions
    f.inputs do
-     button_to 'add more variants'
+     f.has_many :texts, allow_destroy: true, heading: 'Add translation' do |ff|
+      ff.input :language
+      ff.input :title
+      ff.input :description
+      ff.input :short_desc
+     end
    end
+   f.inputs do
+     submit_tag "Save and add variants"
+   end
+   f.actions
 
 
   end
+
+  index do
+    column :name
+    column :price
+    column :public
+    column :crystal_type
+    column :crystal_amount
+    actions
+  end
+
+  filter :name
+  filter :price
+  filter :crystal_amount
+
   controller do
     def create
     create! do |format|
-=begin
-    if params[:images]
-      @variant = @product.variants.new(name: 'main')
-      #===== The magic is here ;)
-      params[:images].each { |image|
-        pic = Picture.new(image: image)
-        pic.variant = @variant
-        pic.save
-      }
-
+    if params[:commit].include? 'variant'
+      format.html {redirect_to new_admin_variant_url({product_id: @product.id})}
     end
-=end
-    unless params[:commit]
-    format.html {redirect_to new_admin_variant_url({product_id: @product.id})}
-      end
     end
     end
     def update
       update! do |format|
-        unless params[:commit]
+        if params[:commit].include? 'variant'
           format.html {redirect_to new_admin_variant_url({product_id: @product.id})}
         end
       end

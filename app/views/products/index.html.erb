@@ -15,6 +15,7 @@
           <%=if variant.pictures[0]; image_tag variant.pictures[0].image(:thumb); end%>
           <br>
           <%=variant.name%>
+          <%=debug variant.colors%>
           <%=link_to 'buy', new_line_item_path({variant_id:variant.id})%>
         </td>
         <%end%>

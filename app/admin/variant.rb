@@ -1,6 +1,6 @@
 ActiveAdmin.register Variant do
-
-  permit_params :name, :product_id, :images
+  menu parent: 'Products'
+  permit_params :name, :product_id, :images, colors_attributes: [:name, :id, :_destroy]
   # See permitted parameters documentation:
   # https://github.com/gregbell/active_admin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
@@ -31,6 +31,15 @@ ActiveAdmin.register Variant do
     f.inputs do
       button_to 'Save and add more variants'
     end
+  end
+  show do |variant|
+    h2 "#{variant.name}, #{variant.product.name}"
+    attributes_table do
+    variant.colors.each do |color|
+      row 'Color' do color.name end
+    end
+      rows :created_at, :updated_at
+      end
   end
 
   controller do
