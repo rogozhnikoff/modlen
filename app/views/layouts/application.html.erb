@@ -4,12 +4,183 @@
   <title>ModlenRails</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'test' %>
   <%= csrf_meta_tags %>
 </head>
 
 
 <body>
-<%= yield %>
+<div class="pop-up ">
+  <img src=<%=image_url "content/example-small/example-1.jpg"%> alt=""/>
+</div>
+
+<div class="pop-up-sign">
+  <div class="popup-sign" style="width: 297px">
+    <a class="popup-sign__modlen-link dashed" href="#"><u>My Modlen</u></a>
+
+    <div class="popup-sign__inner">
+      <a href="#" class="popup-sign__close"><i class="fa fa-times"></i></a>
+      <div class="popup-sign__img-wrap">
+        <a href="#" class="popup-sign__link dashed"><u>Sign in with</u></a>
+        <span class="popup-sign__f">f</span>
+      </div>
+      <div class="popup-sign__content">
+
+        <form action="">
+          <div class="input-wrap input-wrap_mb">
+            <label for="MailPopup" class="input-label input-label_pr_31">E-mail</label>
+            <input type="text" id="MailPopup" class="input input_w_154"/>
+          </div>
+          <div class="input-wrap">
+            <label for="PassPopup" class="input-label">Password</label>
+            <input type="text" id="PassPopup" class="input input_w_154"/>
+          </div>
+        </form>
+
+        <div class="popup-sign__btn-wrap">
+          <a href="#" class="btn btn_white"><span class="btn_in-shadow">Sign in</span></a>
+        </div>
+
+        <div class="popup-sign__bottom">
+          <a class="popup-sign__registration dashed" href="#"><u>Registration</u></a>
+          <a class="popup-sign__reset-pass popup-sign__reset-pass_ml dashed" href="#"><u>Password reset</u></a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="forBlur ">
+  <div class="wrapper">
+    <div class="container" id="" >
+      <header class="head">
+        <div class="head__theme head__theme_mb_32"></div>
+
+        <div class="head__left">
+          <div class="head__logo"><a href="#" class="head__logo-link"><img src=<%=image_url "img/content/logo.svg"%> alt=""/></a></div>
+          <div class="head__quality">
+            <h1><a href="#" class="head__quality-link">Quality</a></h1>
+            <h1><a href="#" class="head__quality-link">Beauty</a></h1>
+            <h1><a href="#" class="head__quality-link">Accessibility</a></h1>
+          </div>
+        </div>
+
+        <div class="head__right">
+          <div class="head__top">
+            <div class="head__my">
+              <div class="head__like">
+                <div class="like-this">
+                  <a class="like-this__heart" href="#"><span class="like-this__num">0</span></a>
+                </div>
+              </div>
+              <a href="#" class="head__my-link dashed"><u>My Modlen</u></a>
+            </div>
+            <div class="head__cart">
+              <span class="head__cart-circle">17</span>
+              <a href="#" class="head__cart-link">Cart</a>
+            </div>
+            <div class="head__free">
+              <a href="#" class="head__shipping-link">Free shipping</a> to New York<span class="head__and"> &</span> USA
+            </div>
+          </div>
+
+          <div class="head__navi-list">
+            <ul class="navi-list">
+              <li class="navi-list__item navi-list__item_m_0"><a class="navi-list__link" href="#">Rhythmic Gymnastics Leotards</a>
+              </li>
+              <li class="navi-list__item"><a class="navi-list__link" href="#">Acrobatic Gymnastics Dress</a>
+              </li>
+              <li class="navi-list__item "><a class="navi-list__link" href="#">Ice Figure Skating Dress</a>
+              </li>
+            </ul>
+          </div>
+          <div class="head__social-list">
+            <ul class="social-list">
+              <li class="social-list__item social-list__item_mr_20">
+                <a href="#" class="social-list__link">STUDIO</a>:
+                <a href="#" class="head__fb-link"><i class="icon-fb"></i></a>
+                <a href="#" class="head__instagram-link"><i class="icon-instagram"></i></a>
+                <a href="#" class="head__pinterest-link"><i class="icon-pinterest"></i></a>
+              </li>
+              <li class="social-list__item">
+                <a href="#" class="social-list__link">STORE</a>:
+                <a href="#" class="head__etsy-link"><i class="icon-etsy"></i></a>
+              </li>
+              <li class="social-list__item social-list__item_ml_20"><a href="#" class="social-list__link">HAPPY CUSTOMERS</a></li>
+              <li class="social-list__item social-list__item_ml_20"><a href="#" class="social-list__link">FAQ</a></li>
+              <li class="social-list__item social-list__item_ml_17"><a href="#" class="social-list__link">CONTACT</a></li>
+            </ul>
+
+          </div>
+        </div>
+      </header>
+
+
+      <%=yield%>
+
+    </div><!-- .container -->
+  </div>
+
+
+  <footer class="foot">
+    <div class="container">
+      <div class="foot__inner">
+
+
+        <div class="body index clearfix">
+          <div class="element element-1"></div>
+          <div class="element element-2"></div>
+          <div class="memberclub-header clearfix">
+            <p class="header">Members club emails</p>
+            <p class="header-text">Be the first to know about new leotards</p>
+          </div>
+          <p class="enter-your">Enter your</p>
+          <input class="field field-1" name="name" placeholder="name" type="text">
+          <p class="and">&amp;</p>
+          <input class="field field-2" name="name" placeholder="e-mail" type="email">
+          <button class="_button">SIGN UP&nbsp;</button>
+
+
+        </div>
+
+
+        <div class="foot__wrap">
+          <div class="foot__sewing">
+            <div class="foot__sewing-top">
+              <a href="#"><i class="instagram-icon"></i></a>
+              <a href="#" class="foot__sewing-link">Sewing process</a>
+            </div>
+            <div class="foot__sewing-img-wrap">
+              <div class="foot__sewing-img"></div>
+              <div class="foot__sewing-img"></div>
+              <div class="foot__sewing-img"></div>
+            </div>
+          </div>
+          <div class="foot__copyright">
+            <div class="foot__copyright-top">&#169; 2000 - 2014,
+              <a href="#" class="foot__store">Rhythmic Gymnastics Leotard Store</a></div>
+            <div class="foot__copyright-bottom">
+              <div class="foot__copy-left">
+                <a class="foot__copyright-link" href="#">Copyright</a>
+                <a class="foot__copyright-link" href="#">Privacy policy</a>
+                <a class="foot__copyright-link" href="#">Terms of use</a>
+              </div>
+              <div class="foot__copy-right">
+                <a class="foot__copyright-link foot__copyright-link_fw" href="#">Shipping & returns</a>
+                <a class="foot__copyright-link" href="#">Articles</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </footer>
+
+</div>
+
 </body>
 </html>
 
