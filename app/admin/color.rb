@@ -1,5 +1,5 @@
 ActiveAdmin.register Color do
-  permit_params :name
+  permit_params :name, :code
 
   menu parent: 'Products'
 
