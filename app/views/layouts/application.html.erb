@@ -9,6 +9,11 @@
 
 
 <body>
+<%= alert if alert %>
+<ul class="hmenu">
+  <%= render 'devise/menu/registration_items' %>
+  <%= render 'devise/menu/login_items' %>
+</ul>
 <div class="pop-up ">
   <img src=<%=image_url "content/example-small/example-1.jpg"%> alt=""/>
 </div>

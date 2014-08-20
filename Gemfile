@@ -41,3 +41,6 @@ gem 'activeadmin', github: 'gregbell/active_admin'
 gem 'paperclip', '~> 3.5.3'
 gem 'devise'
 gem 'cancan'
+group :development do
+  gem "better_errors"
+end
