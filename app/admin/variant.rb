@@ -18,6 +18,7 @@ ActiveAdmin.register Variant do
       f.input :name
       f.input :color, label: 'Main color'
       f.input :default
+      f.input :product
     end
     f.inputs 'Colors' do
       f.input :colors, as: :check_boxes

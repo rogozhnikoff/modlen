@@ -1,0 +1,24 @@
+<div class="popup-sign__content">
+
+  <%= form_for(user_resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+
+    <div class="input-wrap input-wrap_mb">
+      <%= f.label 'E-mail', class: "input-label input-label_pr_31"%>
+      <%= f.email_field :email, id: 'MailPopup', class: 'input input_w_154', :autofocus => true %>
+    </div>
+    <div class="input-wrap">
+      <%= f.label :password, class: 'input-label' %>
+      <%= f.password_field :password, id: 'PassPopup', class: 'input input_w_154'%>
+    </div>
+
+  <div class="popup-sign__btn-wrap">
+    <%=f.submit 'Sign in', class: 'btn btn_white', remote: true%>
+  </div>
+  <%end%>
+
+  <div class="popup-sign__bottom">
+    <a class="popup-sign__registration dashed" href="#"><u>Registration</u></a>
+    <a class="popup-sign__reset-pass popup-sign__reset-pass_ml dashed" href="#"><u>Password reset</u></a>
+  </div>
+
+</div>

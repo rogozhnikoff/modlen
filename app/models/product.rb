@@ -8,5 +8,6 @@ class Product < ActiveRecord::Base
     self.variants.each do |v|
       return v if v.default
     end
+    return false
   end
 end

@@ -28,29 +28,8 @@
         <a href="#" class="popup-sign__link dashed"><u>Sign in with</u></a>
         <span class="popup-sign__f">f</span>
       </div>
-      <div class="popup-sign__content">
+      <%=render 'devise/sessions/login_modal'%>
 
-        <form action="">
-          <div class="input-wrap input-wrap_mb">
-            <label for="MailPopup" class="input-label input-label_pr_31">E-mail</label>
-            <input type="text" id="MailPopup" class="input input_w_154"/>
-          </div>
-          <div class="input-wrap">
-            <label for="PassPopup" class="input-label">Password</label>
-            <input type="text" id="PassPopup" class="input input_w_154"/>
-          </div>
-        </form>
-
-        <div class="popup-sign__btn-wrap">
-          <a href="#" class="btn btn_white"><span class="btn_in-shadow">Sign in</span></a>
-        </div>
-
-        <div class="popup-sign__bottom">
-          <a class="popup-sign__registration dashed" href="#"><u>Registration</u></a>
-          <a class="popup-sign__reset-pass popup-sign__reset-pass_ml dashed" href="#"><u>Password reset</u></a>
-        </div>
-
-      </div>
     </div>
   </div>
 </div>
