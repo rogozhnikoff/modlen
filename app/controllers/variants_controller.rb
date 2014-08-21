@@ -16,4 +16,12 @@ class VariantsController < ApplicationController
       format.js {render 'variants/like'}
     end
   end
+
+  def change_color
+    @variant = Variant.find params[:id]
+    @block = params[:block]
+    respond_to do |format|
+      format.js
+    end
+  end
 end

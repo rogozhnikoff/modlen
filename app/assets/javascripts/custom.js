@@ -21,28 +21,6 @@ $(function(){
     $.DrLazyload();
     checHeartNum();
 
-// Сердечко в итемах
-
-/*
-    var heart =  $('.item__like-off'),
-        like = $('.like-this__num');
-
-    heart.click(function(e){
-        e.preventDefault();
-
-        if($(this).hasClass('active')){
-            $(this).removeClass('active');
-            like.html(parseInt(like.text())-1);
-            checHeartNum();
-        }
-        else{
-            $(this).addClass('active');
-            like.html(parseInt(like.text())+1);
-            checHeartNum();
-        }
-    });
-*/
-
     //lazy load
     $('.more-btn').click(function(e){
         e.preventDefault();
@@ -52,6 +30,27 @@ $(function(){
         });
         $('#putinHuilo').toggle('display', 'block')({
         });
+        $(window).load(function(){
+            $('#container').masonry({
+// указываем элемент-контейнер в котором расположены блоки для динамической верстки
+                itemSelector: '.item',
+                isFitWidth: true,
+                columnWidth: 320,
+// указываем класс элемента являющегося блоком в нашей сетке
+                singleMode: false,
+// true - если у вас все блоки одинаковой ширины
+                isResizable: true,
+// перестраивает блоки при изменении размеров окна
+                isAnimated: true,
+// анимируем перестроение блоков
+                animationOptions: {
+                    queue: false,
+                    duration: 500
+                }
+// опции анимации - очередь и продолжительность анимации
+            });
+        });
+
     });
 
 });
@@ -82,16 +81,15 @@ $(function(){
     eye.click(function(e){
         e.preventDefault();
         if(pass.attr('type') === ('password')){
-            console.log(1);
             pass.attr('type','text');
         } else{
-            console.log(2);
             pass.attr('type','password')
         }
     });
 });
 
 //Выбираем цвет
+
 $(function(){
    var color = $('.color-choice__item'),
        colorin = 'color-choice__item_active',
@@ -102,11 +100,8 @@ $(function(){
         $(this).siblings().removeClass(colorin);
     });
 
-    link.click(function(ev){
-        ev.preventDefault();
-
-    });
 });
+
 
 
 // payment cvv/cvc code show

@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     member do
       post :like
       delete :dislike
+      post :change_color
     end
 end
 

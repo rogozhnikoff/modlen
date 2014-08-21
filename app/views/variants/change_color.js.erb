@@ -1,0 +1,11 @@
+var     block = $('#id_<%=@block%>').attr('class', 'item masonry-brick variant_<%=@variant.id%>'),
+        img = block.find('img'),
+        a = block.find('a.item__img-link.item__img-link_bs'),
+        href = a.attr('href'),
+heart = $('.variant_<%=@variant.id%> .item__like-off');
+heart.replaceWith('<%=escape_javascript render partial: 'products/like_heart', locals: {variant: @variant}%>');
+img.attr('src','<%=image_url @variant.pictures[0].image%>');
+console.log(href);
+href = href.substring(0, href.length-2)+<%=@variant.id%>;
+console.log(href);
+a.attr('href', href);

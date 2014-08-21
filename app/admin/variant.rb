@@ -27,7 +27,6 @@ ActiveAdmin.register Variant do
     f.inputs 'Images' do
     f.has_many :pictures, :sortable => :order, allow_destroy: true, html: {multipatr: true} do |p|
       p.input :image, hint: p.template.image_tag(p.object.image.url(:thumb))
-      p.input :order
     end
     end
     f.inputs do
