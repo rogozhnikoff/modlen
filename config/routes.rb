@@ -11,6 +11,14 @@ Rails.application.routes.draw do
 
   resources :products
 
+  resources :variants do
+    member do
+      post :like
+      delete :dislike
+    end
+end
+
+
   resources :cart
 
   devise_for :users

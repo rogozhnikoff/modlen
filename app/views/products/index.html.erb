@@ -1,9 +1,8 @@
 <div class="item-main">
 
-
 <div id="container" class="">
 <%@products.each do |product|%>
-    <div class="item" style="">
+    <div class="item" style="" id="prod_<%=product.id%>">
 
       <div class="item__img-wrap item__img-wrap_choice">
         <%if product.variants.length > 1%>
@@ -39,14 +38,14 @@
             <div class="item__price"><i class="fa fa-eur"> </i>109.-</div>
             <%end%>
         <a class="item__rotator" href="#"></a>
-        <a class="item__like-off" href="#"></a>
+<!--        put ilke heart for products here-->
       </div>
 
     </div>
 
 
 <% product.variants.each do |variant|%>
-<div class="item" style="">
+<div class="item" style="" id="variant_<%=variant.id%>">
 
   <div class="item__img-wrap">
     <a class="item__img-link item__img-link_bs" href="#">
@@ -65,9 +64,8 @@
         <div class="item__price"><i class="fa fa-eur"> </i>109.-</div>
     <%end%>
     <a class="item__rotator" href="#"></a>
-    <a class="item__like-off" href="#"></a>
+        <%=render partial: 'products/like_heart', locals: {variant: variant}%>
   </div>
-
 </div>
 <%end; end%>
 

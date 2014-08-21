@@ -1,0 +1,9 @@
+var like = $('.like-this__heart span'),
+        heart = $('#variant_<%=@variant.id%> .item__like-off'),
+        parent = heart.parent();
+heart.remove();
+parent.append('<%=escape_javascript render partial: 'products/like_heart', locals: {variant: @variant}%>');
+
+
+like.html('<%=@guest.variants.length%>');
+checHeartNum();

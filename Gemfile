@@ -44,3 +44,4 @@ gem 'cancan'
 group :development do
   gem "better_errors"
 end
+gem 'omniauth-facebook'

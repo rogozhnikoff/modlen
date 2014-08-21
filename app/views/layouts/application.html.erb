@@ -10,10 +10,12 @@
 
 <body>
 <%= alert if alert %>
+<%= notice if notice %>
 <ul class="hmenu">
   <%= render 'devise/menu/registration_items' %>
   <%= render 'devise/menu/login_items' %>
 </ul>
+<%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %>
 <div class="pop-up ">
   <img src=<%=image_url "content/example-small/example-1.jpg"%> alt=""/>
 </div>
@@ -55,7 +57,7 @@
             <div class="head__my">
               <div class="head__like">
                 <div class="like-this">
-                  <a class="like-this__heart" href="#"><span class="like-this__num">0</span></a>
+                  <a class="like-this__heart" href="#"><span class="like-this__num"><%=@guest.variants.length%></span></a>
                 </div>
               </div>
               <a href="#" class="head__my-link dashed"><u>My Modlen</u></a>

@@ -1,4 +1,5 @@
 //ПРоверка на цифру в сердечке.
+
 function checHeartNum() {
     var like = $('.like-this__heart'),
         numb = like.text(), //забираем строку
@@ -14,6 +15,7 @@ function checHeartNum() {
 }
 
 
+
 $(function(){
     // lazy load for imgs
     $.DrLazyload();
@@ -21,6 +23,7 @@ $(function(){
 
 // Сердечко в итемах
 
+/*
     var heart =  $('.item__like-off'),
         like = $('.like-this__num');
 
@@ -38,6 +41,7 @@ $(function(){
             checHeartNum();
         }
     });
+*/
 
     //lazy load
     $('.more-btn').click(function(e){

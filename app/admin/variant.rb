@@ -1,6 +1,7 @@
 ActiveAdmin.register Variant do
   menu parent: 'Products'
-  permit_params :name, :default, :product_id, :color_id, :images, colors_attributes: [:name, :id], color_ids: [:id]
+  permit_params :name, :default, :product_id, :color_id, :images, colors_attributes: [:name, :id], color_ids: [:id],
+                pictures_attributes: [:order, :id, :image, :_destroy]
   # See permitted parameters documentation:
   # https://github.com/gregbell/active_admin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
@@ -22,10 +23,12 @@ ActiveAdmin.register Variant do
     end
     f.inputs 'Colors' do
       f.input :colors, as: :check_boxes
-=begin
-      f.input :id, as: :check_boxes, multiple: true, collection: Color.all, selected: @colors
-      f.input :colors_variants, as: :check_boxes, collection: Color.all.map{|c| c.name}
-=end
+    end
+    f.inputs 'Images' do
+    f.has_many :pictures, :sortable => :order, allow_destroy: true, html: {multipatr: true} do |p|
+      p.input :image, hint: p.template.image_tag(p.object.image.url(:thumb))
+      p.input :order
+    end
     end
     f.inputs do
       file_field_tag("images[]", multiple: true, name: "images[]")
