@@ -1,4 +1,8 @@
 class VariantsController < ApplicationController
+  def show
+    @variant = Variant.find params[:id]
+    @product = @variant.product
+  end
   def like
     @variant =  Variant.find params[:id]
     @guest.variants << @variant
@@ -20,6 +24,13 @@ class VariantsController < ApplicationController
   def change_color
     @variant = Variant.find params[:id]
     @block = params[:block]
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def change_variant
+    @variant = Variant.find params[:id]
     respond_to do |format|
       format.js
     end

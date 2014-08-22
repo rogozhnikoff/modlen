@@ -16,12 +16,12 @@
     <%end%>
     <%=link_to( variant, class: 'item__img-link item__img-link_bs') do%>
 
-      <img data-lazy-src=<%= image_url variant.pictures[0].image%> alt="Rhythmic"/>
+      <img data-lazy-src=<%= image_url variant.pictures.find_by(order: 0).image%> alt="Rhythmic"/>
 
       <div class="item__name-link-wrap">
         <p class="item__name-link">Rhythmic Gymnastics Leotard #29</p>
       </div>
-      <%if product.stock_for_sale!='' %>
+      <%if variant.stock.include? 'Stock' %>
           <div class="item__stock-img"></div>
       <%end%>
 

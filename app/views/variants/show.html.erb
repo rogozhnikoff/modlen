@@ -1,5 +1,4 @@
 <div class="property__wrap">
-
 <div class="property">
 
   <div class="property__top">
@@ -15,30 +14,15 @@
     <div class="property__color">
       <div class="property__color-list">
         <ul class="color-list">
+<%@product.variants.each do |var|%>
           <li class="color-list__item">
-            <div class="color-list__circle active circle-pg"><i class="fa fa-circle"></i></div>
-            <a class="color-list__link active dashed" href="#"><u>Pink & Green</u></a>
+            <div class="color-list__circle circle-pg <%='active' if var==@variant%>"
+            ><i style="color: <%=var.color.code%>" class="fa fa-circle"></i></div>
+            <%=link_to change_variant_variant_path(var), class: 'color-list__link active dashed', remote: true, method: :post do%>
+                <u><%=var.colors_to_s%></u>
+            <%end%>
           </li>
-          <li class="color-list__item">
-            <div class="color-list__circle circle-lbg"><i class="fa fa-circle"></i></div>
-            <a class="color-list__link dashed" href="#"><u>Light Blue & Green</u></a>
-          </li>
-          <li class="color-list__item">
-            <div class="color-list__circle circle-bg"><i class="fa fa-circle"></i></div>
-            <a class="color-list__link dashed" href="#"><u>Blue & Green</u></a>
-          </li>
-          <li class="color-list__item">
-            <div class="color-list__circle circle-gs"><i class="fa fa-circle"></i></div>
-            <a class="color-list__link dashed" href="#"><u>Green & Silver</u></a>
-          </li>
-          <li class="color-list__item">
-            <div class="color-list__circle circle-yg"><i class="fa fa-circle"></i></div>
-            <a class="color-list__link dashed" href="#"><u>Yellow & Green</u></a>
-          </li>
-          <li class="color-list__item color-list__item_mb_8">
-            <div class="color-list__circle circle-red"><i class="fa fa-circle"></i></div>
-            <a class="color-list__link dashed" href="#"><span>Red, Blue, White,</span><br><u>Pink & Green</u></a>
-          </li>
+<%end%>
           <li class="color-list__item">
             <div class="color-list__circle circle-custom"><i class="fa fa-circle"></i></div>
             <a class="color-list__link dashed" href="#"><u>Custom color</u></a>
@@ -52,7 +36,7 @@
 
     <div class="property__item-view">
       <div class="property__img-wrap">
-        <img src="../../img/content/big-item.jpg" alt="Leotard"/>
+        <img src="<%=image_url @variant.pictures.find_by(order: 0).image.url%>" alt="Leotard"/>
         <a class="item__rotator item__rotator_w_43 item__rotator_offset" href="#"></a>
         <a href="#" class="property__pailletes">Pailettes<span class="pointer-wrap"><span class="pointer"></span></span></a>
         <a href="#" class="property__mesh"><span>Skin<br>Colored<br>Mesh</span> <span class="pointer-wrap"><span class="pointer"></span></span></a>
@@ -80,11 +64,11 @@
         <div class="summary__inner">
           <div class="price">
             <div class="price__left">
-              <div class="price__amount"><i class="fa fa-usd"></i>119.-</div>
+              <div class="price__amount"><i class="fa fa-usd"></i><%=@product.price%></div>
               <div class="price__around">AROUND <i class="fa fa-eur"></i>88 / <i class="fa fa-gbp"></i>72</div>
             </div>
             <div class="price__right">
-              <a href="#" class="price__like-off"></a>
+              <%=render partial: 'variants/like_heart', locals: {variant: @variant}%>
             </div>
           </div>
 
@@ -111,7 +95,7 @@
             <a href="#" class="btn btn_green btn_box-shadow left"><span class="btn_in-shadow">Add to cart</span></a>
 
             <div class="summary__pay-variant">
-              <a class="summary__pay-link" href="#"><img src="../../img/icon/pay-VMP.png" alt="pay"/></a>
+              <a class="summary__pay-link" href="#"><img src="<%=image_url 'img/icon/pay-VMP.png'%>" alt="pay"/></a>
             </div>
           </div>
 
@@ -141,28 +125,15 @@
 
 
   <div class="property__item-desc">
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-    Ab aspernatur consequatur culpa doloribus, dolorum enim esse facilis impedit inventore ipsum,
-    itaque labore laudantium maiores molestias neque nulla obcaecati quaerat rerum sequi sit tenetur
-    unde voluptas?
+    <%=@product.texts.find_by(language: 'en').description%>
   </div>
 
   <div class="property__example">
+    <%@variant.pictures.each do |pic| %>
     <div class="property__example-wrap">
-      <a href="#" class="property__img"><img src="../../img/content/example-small/example-1.jpg" alt="" /></a>
+      <a href="#" class="property__img"><img src="<%=image_url pic.image.url(:thumb)%>" alt="" /></a>
     </div>
-    <div class="property__example-wrap">
-      <a href="#" class="property__img"><img src="../../img/content/example-small/example-2.jpg" alt="" /></a>
-    </div>
-    <div class="property__example-wrap">
-      <a href="#" class="property__img"><img src="../../img/content/example-small/example-3.jpg" alt="" /></a>
-    </div>
-    <div class="property__example-wrap">
-      <a href="#" class="property__img"><img src="../../img/content/example-small/example-4.jpg" alt="" /></a>
-    </div>
-    <div class="property__example-wrap">
-      <a href="#" class="property__img"><img src="../../img/content/example-small/example-5.jpg" alt="" /></a>
-    </div>
+    <%end%>
     <!-- .include -->
     <div class="property__large-img">
       <img src="" alt=""/>
@@ -186,21 +157,11 @@
 <div class="preview">
   <div class="preview__title">More different:</div>
   <div class="preview__top">
-    <div class="preview__img-wrap"><div class="preview__link-wrap"><a class="preview__img-link " href="#"><img src="../../img/content/item-leotard.jpg" alt=""/></a></div></div>
-    <div class="preview__img-wrap"><div class="preview__link-wrap"><a class="preview__img-link " href="#"><img src="../../img/content/item-leotard.jpg" alt=""/></a></div></div>
-    <div class="preview__img-wrap"><div class="preview__link-wrap"><a class="preview__img-link " href="#"><img src="../../img/content/item-leotard.jpg" alt=""/></a></div></div>
-    <div class="preview__img-wrap"><div class="preview__link-wrap"><a class="preview__img-link " href="#"><img src="../../img/content/item-leotard.jpg" alt=""/></a></div></div>
-    <div class="preview__img-wrap"><div class="preview__link-wrap"><a class="preview__img-link " href="#"><img src="../../img/content/item-leotard.jpg" alt=""/></a></div></div>
-    <div class="preview__img-wrap"><div class="preview__link-wrap"><a class="preview__img-link " href="#"><img src="../../img/content/item-leotard.jpg" alt=""/></a></div></div>
-    <div class="preview__img-wrap"><div class="preview__link-wrap"><a class="preview__img-link active" href="#"><img src="../../img/content/item-leotard.jpg" alt=""/></a></div></div>
-    <div class="preview__img-wrap"><div class="preview__link-wrap active"><a class="preview__img-link " href="#"><img src="../../img/content/item-leotard.jpg" alt=""/></a></div></div>
-    <div class="preview__img-wrap"><div class="preview__link-wrap"><a class="preview__img-link " href="#"><img src="../../img/content/item-leotard.jpg" alt=""/></a></div></div>
-    <div class="preview__img-wrap"><div class="preview__link-wrap"><a class="preview__img-link " href="#"><img src="../../img/content/item-leotard.jpg" alt=""/></a></div></div>
-    <div class="preview__img-wrap"><div class="preview__link-wrap"><a class="preview__img-link " href="#"><img src="../../img/content/item-leotard.jpg" alt=""/></a></div></div>
-    <div class="preview__img-wrap"><div class="preview__link-wrap"><a class="preview__img-link " href="#"><img src="../../img/content/item-leotard.jpg" alt=""/></a></div></div>
-    <div class="preview__img-wrap"><div class="preview__link-wrap"><a class="preview__img-link " href="#"><img src="../../img/content/item-leotard.jpg" alt=""/></a></div></div>
-    <div class="preview__img-wrap"><div class="preview__link-wrap"><a class="preview__img-link " href="#"><img src="../../img/content/item-leotard.jpg" alt=""/></a></div></div>
-    <div class="preview__img-wrap"><div class="preview__link-wrap"><a class="preview__img-link " href="#"><img src="../../img/content/item-leotard.jpg" alt=""/></a></div></div>
+    <%@product.variants.each do |var|
+      var.pictures.each do |pic| %>
+    <div class="preview__img-wrap"><div class="preview__link-wrap"><a class="preview__img-link " href="#"><img src="<%=image_url pic.image.url(:thumb)%>" alt=""/></a></div></div>
+    <%end;end%>
+<!--    <div class="preview__img-wrap"><div class="preview__link-wrap active"><a class="preview__img-link " href="#"><img src="../../img/content/item-leotard.jpg" alt=""/></a></div></div>-->
   </div>
 
   <div class="preview__bottom">

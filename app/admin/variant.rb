@@ -1,6 +1,6 @@
 ActiveAdmin.register Variant do
   menu parent: 'Products'
-  permit_params :name, :default, :product_id, :color_id, :images, colors_attributes: [:name, :id], color_ids: [:id],
+  permit_params :name, :stock, :product_id, :color_id, :images, colors_attributes: [:name, :id], color_ids: [:id],
                 pictures_attributes: [:order, :id, :image, :_destroy]
   # See permitted parameters documentation:
   # https://github.com/gregbell/active_admin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
@@ -18,7 +18,7 @@ ActiveAdmin.register Variant do
     f.inputs do
       f.input :name
       f.input :color, label: 'Main color'
-      f.input :default
+      f.input :stock, as: :select, collection: Product::STOCK_TYPES, :include_blank => false
       f.input :product
     end
     f.inputs 'Colors' do
@@ -27,6 +27,7 @@ ActiveAdmin.register Variant do
     f.inputs 'Images' do
     f.has_many :pictures, :sortable => :order, allow_destroy: true, html: {multipatr: true} do |p|
       p.input :image, hint: p.template.image_tag(p.object.image.url(:thumb))
+      p.input :order
     end
     end
     f.inputs do
@@ -42,7 +43,7 @@ ActiveAdmin.register Variant do
     h2 "#{variant.name}"
     attributes_table do
       row 'Main color' do variant.color.name end
-      row 'Default' do variant.default end
+      row 'Stock for sale' do variant.stock end
     variant.colors.each do |color|
       row 'Color' do color.name end
     end
@@ -52,6 +53,7 @@ ActiveAdmin.register Variant do
   index do
     column :name
     column :color
+    column :stock
     column :product
     actions
   end
@@ -85,6 +87,7 @@ ActiveAdmin.register Variant do
       else
         @variant = Variant.new
       end
+      @variant.stock = Product::STOCK_TYPES[0]
     end
   end
 end

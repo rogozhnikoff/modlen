@@ -18,14 +18,14 @@ ActiveAdmin.register Product do
   form html: {multipart: true}do |f|
    f.inputs 'Main' do
      f.input :name
-     f.input :stock_for_sale
+     f.input :stock_for_sale, as: :select, collection: Product::STOCK_TYPES, :include_blank => false
      f.input :price
      f.input :old_price
      f.input :public
    end
    f.inputs 'details' do
-     f.input :crystal_type
-     f.input :crystal_amount
+     f.input :crystal_type, as: :select, collection: Product::CRYSTAL_TYPES, :include_blank => false
+     f.input :crystal_amount, value: 1000
      f.input :sleeves
      f.input :skirt
      f.input :collar
@@ -74,6 +74,17 @@ ActiveAdmin.register Product do
         end
       end
     end
+    def new
+      new! do
+        init_defaults
+      end
+    end
     end
 
+end
+private
+def init_defaults
+  @product.crystal_amount = 1000
+  @product.crystal_type = Product::CRYSTAL_TYPES[0]
+  @product.stock_for_sale = Product::STOCK_TYPES[0]
 end

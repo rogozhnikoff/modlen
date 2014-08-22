@@ -1,6 +1,8 @@
 var like = $('.like-this__heart span'),
-        heart = $('.variant_<%=@variant.id%> .item__like-off');
+        heart = $('.variant_<%=@variant.id%> .item__like-off'),
+        heartProdPage = $('.price__like-off, .price__like-on');
 heart.replaceWith('<%=escape_javascript render partial: 'products/like_heart', locals: {variant: @variant}%>');
+heartProdPage.replaceWith('<%=escape_javascript render partial: 'variants/like_heart', locals: {variant: @variant}%>');
 
 like.html('<%=@guest.variants.length%>');
 checHeartNum();

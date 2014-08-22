@@ -1,0 +1,3 @@
+var img = $('.property__img-wrap img');
+
+img.attr('src','<%=image_url @variant.pictures.find_by(order: 0).image.url%>');

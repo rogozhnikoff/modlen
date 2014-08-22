@@ -15,8 +15,7 @@ function checHeartNum() {
 }
 
 
-
-$(function(){
+var ready = function(){
     // lazy load for imgs
     $.DrLazyload();
     checHeartNum();
@@ -53,11 +52,9 @@ $(function(){
 
     });
 
-});
 
 
 // Схлопываем заказ
-$(function(){
    var closed = $('.order-info__icon');
 
     closed.click(function(){
@@ -69,12 +66,10 @@ $(function(){
         else{
             closed.addClass('fa-plus-square-o');
         }
-    })
-});
+    });
 
 
 //Скриваем/показываем пароль
-$(function(){
    var pass = $('#pass'),
        eye = $('.input-wrap__eye');
 
@@ -86,11 +81,9 @@ $(function(){
             pass.attr('type','password')
         }
     });
-});
 
 //Выбираем цвет
 
-$(function(){
    var color = $('.color-choice__item'),
        colorin = 'color-choice__item_active',
        link = $('.color-choice__link');
@@ -100,7 +93,6 @@ $(function(){
         $(this).siblings().removeClass(colorin);
     });
 
-});
 
 
 
@@ -114,7 +106,6 @@ $(function(){
 * */
 
 
-$(function(){
     var cvc = $('.payment__input-cvv');
     $(cvc).focus(function(){
         $('.payment__arrow').show();
@@ -128,7 +119,6 @@ $(function(){
         $('.payment__card-description').hide();
 
     })
-});
 
 
 
@@ -140,7 +130,6 @@ $(function(){
   * вешаем соседям hide, и вешаем нужному блоку show
   *
 */
-$(function(){
    $('.method-list__item').click(function(ev){
        ev.preventDefault();
 
@@ -155,7 +144,6 @@ $(function(){
                .addClass('method-list__item_active')
                .siblings().removeClass('method-list__item_active');
    })
-});
 
 
 //$(function(){
@@ -181,7 +169,6 @@ $(function(){
 
 
 
-$(function(){
     var like = $('.head__cart-circle'),
         numb = like.text(), //забираем строку
         numint = parseInt(numb);//приводим к числу
@@ -194,23 +181,19 @@ $(function(){
             like.removeClass("active");//В другом случае, убираем
         }
     });
-});
 
 
 // Валюта
-$(function(){
    var cur = $('.currency__text');
 
     cur.click(function(e){
         e.preventDefault();
         cur.siblings().removeClass('active');
         $(this).addClass('active');
-    })
-});
+    });
 
 //Навигация шапки горизониальная
 
-$(function(){
    var navi = $('.navi-list__item'),
        navLink = $('.navi-list__link');
 
@@ -219,12 +202,10 @@ $(function(){
         navi.siblings().removeClass('active');
         $(this).addClass('active');
     });
-});
 
 //popup
 
 
-$(function(){
     var popupLink = $('.head__my-link'),
         popup = $('.pop-up-sign'),
         head = $('.wrapper'),
@@ -248,11 +229,9 @@ $(function(){
             .add(footer)
             .removeClass(blur)
     })
-});
 
 
 //gallery in property
-$(function(){
     var gallery = $('.property__img img');
 
     gallery.click(function(e){
@@ -271,8 +250,62 @@ $(function(){
             $('.property__large-img').hide();
         });
     });
-});
 
+//Options
+    var items = $('.measure-list').find('input'),
+        active = 'measure-list__item_blue',
+        wrongItem = 'measure-list__item_error',
+        wrongLabel = 'measure-list__label_error',
+        wrongInput = 'measure-list__input_error',
+        activeInput = 'measure-list__input_blue',
+        img = $('.option__mirror-img').find('img'),
+        imgText = $('.option__mirror-info'),
+        imgTextA = $('.option__videoguide'),
+        arrow = $('<span>').addClass('measure-list__arrow'),
+        x = 110,
+        text = {};
+
+    $.getJSON('../../js/options.json',function(data){
+        text = data;
+    });
+
+    items.on('focus', function(ev){
+        var parent = $(this).addClass(activeInput).parent().addClass(active),
+            lab = parent.find('label'),
+            src = '../../img/options/'+lab.attr('for')+'.jpg';
+        img.attr('src', src);
+        img.load(function(){
+            var hFull = img.height(),
+                index = parseInt(parent.find('span').text()),
+                y = Math.round(hFull*index/16) + $(this).offset().top - parent.offset().top-15,
+                alpha = Math.round(-Math.atan2(y,x)*180/Math.PI-180);
+
+            //
+            if (lab.attr('for')!='Name'&&lab.attr('for')!='Age') {
+                arrow.css({
+                    'width': Math.round(Math.sqrt(x * x + y * y)),
+                    'transform': 'rotate(' + alpha + 'deg)'
+                }).appendTo(parent);
+            }
+            $(this).off();
+        });
+        imgText.html(text[lab.attr('for')].text);
+        imgTextA.attr('href', text[lab.attr('for')].url);
+    });
+
+    items.on('blur', function(ev) {
+        var parent = $(this).parent().removeClass(active);
+        if (!validateOption($(this))) {
+            parent.addClass(wrongItem);
+            $(this).addClass(wrongInput).removeClass(activeInput);
+            parent.find('label').addClass(wrongLabel);
+        } else {
+            parent.removeClass(wrongItem);
+            $(this).removeClass(wrongInput).removeClass(activeInput);
+            parent.find('label').removeClass(wrongLabel);
+        }
+    });
+};
 
 //masonry
 $(window).load(function(){
@@ -295,65 +328,11 @@ $(window).load(function(){
 // опции анимации - очередь и продолжительность анимации
     });
 });
-//Options
-$(function(){
-    var items = $('.measure-list').find('input'),
-        active = 'measure-list__item_blue',
-        wrongItem = 'measure-list__item_error',
-        wrongLabel = 'measure-list__label_error',
-        wrongInput = 'measure-list__input_error',
-        activeInput = 'measure-list__input_blue',
-        img = $('.option__mirror-img').find('img'),
-        imgText = $('.option__mirror-info'),
-        imgTextA = $('.option__videoguide'),
-        arrow = $('<span>').addClass('measure-list__arrow'),
-        x = 110,
-        text = {};
-
-    $.getJSON('../../js/options.json',function(data){
-        text = data;
-    });
-
-    items.on('focus', function(ev){
-       var parent = $(this).addClass(activeInput).parent().addClass(active),
-           lab = parent.find('label'),
-           src = '../../img/options/'+lab.attr('for')+'.jpg';
-       img.attr('src', src);
-       img.load(function(){
-           var hFull = img.height(),
-               index = parseInt(parent.find('span').text()),
-               y = Math.round(hFull*index/16) + $(this).offset().top - parent.offset().top-15,
-               alpha = Math.round(-Math.atan2(y,x)*180/Math.PI-180);
-
-           //
-           if (lab.attr('for')!='Name'&&lab.attr('for')!='Age') {
-               arrow.css({
-                   'width': Math.round(Math.sqrt(x * x + y * y)),
-                   'transform': 'rotate(' + alpha + 'deg)'
-               }).appendTo(parent);
-           }
-           $(this).off();
-       });
-       imgText.html(text[lab.attr('for')].text);
-       imgTextA.attr('href', text[lab.attr('for')].url);
-    });
-
-    items.on('blur', function(ev) {
-       var parent = $(this).parent().removeClass(active);
-       if (!validateOption($(this))) {
-           parent.addClass(wrongItem);
-           $(this).addClass(wrongInput).removeClass(activeInput);
-           parent.find('label').addClass(wrongLabel);
-       } else {
-           parent.removeClass(wrongItem);
-           $(this).removeClass(wrongInput).removeClass(activeInput);
-           parent.find('label').removeClass(wrongLabel);
-       }
-    });
-});
 function validateOption($el) {
     var value = parseInt($el.val());
     if ($el.parent().find('label').text().indexOf('name')!=-1) return true;
     if (isNaN(value) || value < 1 || value > 250) return false;
     return true
-}
+};
+$(document).ready(ready);
+$(document).on('page:load', ready);

@@ -2,10 +2,14 @@ var     block = $('#id_<%=@block%>').attr('class', 'item masonry-brick variant_<
         img = block.find('img'),
         a = block.find('a.item__img-link.item__img-link_bs'),
         href = a.attr('href'),
-heart = $('.variant_<%=@variant.id%> .item__like-off');
+        stock = a.find('.item__stock-img'),
+        heart = $('.variant_<%=@variant.id%> .item__like-off');
+
 heart.replaceWith('<%=escape_javascript render partial: 'products/like_heart', locals: {variant: @variant}%>');
-img.attr('src','<%=image_url @variant.pictures[0].image%>');
-console.log(href);
+img.attr('src','<%=image_url @variant.pictures.find_by(order: 0).image%>');
 href = href.substring(0, href.length-2)+<%=@variant.id%>;
-console.log(href);
 a.attr('href', href);
+a.find('.item__stock-img').remove();
+if (<%=@variant.stock.include? 'Stock'%>) {
+    $('<div class="item__stock-img">').insertAfter(block.find('.item__name-link-wrap'));
+};
