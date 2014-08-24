@@ -1,0 +1,12 @@
+<div class="property__example">
+  <%variant.pictures.each do |pic| %>
+      <div class="property__example-wrap">
+        <a href="#" class="property__img"><img src="<%=image_url pic.image.url(:thumb)%>" alt="" /></a>
+      </div>
+  <%end%>
+  <!-- .include -->
+  <div class="property__large-img">
+    <img src="" alt=""/>
+  </div>
+
+</div>

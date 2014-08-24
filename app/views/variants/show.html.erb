@@ -92,7 +92,7 @@
           </div>
 
           <div class="summary__btn-wrap">
-            <a href="#" class="btn btn_green btn_box-shadow left"><span class="btn_in-shadow">Add to cart</span></a>
+            <a href="<%= new_line_item_path({variant_id: @variant}) %>" class="btn btn_green btn_box-shadow left"><span class="btn_in-shadow">Add to cart</span></a>
 
             <div class="summary__pay-variant">
               <a class="summary__pay-link" href="#"><img src="<%=image_url 'img/icon/pay-VMP.png'%>" alt="pay"/></a>
@@ -128,19 +128,7 @@
     <%=@product.texts.find_by(language: 'en').description%>
   </div>
 
-  <div class="property__example">
-    <%@variant.pictures.each do |pic| %>
-    <div class="property__example-wrap">
-      <a href="#" class="property__img"><img src="<%=image_url pic.image.url(:thumb)%>" alt="" /></a>
-    </div>
-    <%end%>
-    <!-- .include -->
-    <div class="property__large-img">
-      <img src="" alt=""/>
-    </div>
-
-  </div>
-
+    <%=render partial: 'variants/photos', locals: {variant:@variant}%>
   <div class="property__include">
     Leotard include:
     <a href="#" class="property__include-link">Stretch lycra</a>,

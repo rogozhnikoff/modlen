@@ -1,3 +1,5 @@
-var img = $('.property__img-wrap img');
+var img = $('.property__img-wrap img'),
+    photos = $('.property__example');
 
 img.attr('src','<%=image_url @variant.pictures.find_by(order: 0).image.url%>');
+photos.replaceWith('<%=escape_javascript render partial: 'variants/photos', locals: {variant: @variant}%>');

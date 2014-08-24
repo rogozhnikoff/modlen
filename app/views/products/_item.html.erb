@@ -37,6 +37,7 @@
     <%end%>
     <a class="item__rotator" href="#"></a>
     <%=render partial: 'products/like_heart', locals: {variant: variant}%>
+    <%= link_to '', new_line_item_path({variant_id: variant}), class: 'small_cart' %>
   </div>
 
 </div>

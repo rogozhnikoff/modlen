@@ -32,14 +32,11 @@ ActiveAdmin.register Product do
    end
    f.inputs do
      f.has_many :texts, allow_destroy: true, heading: 'Add translation' do |ff|
-      ff.input :language
+      ff.input :language, as: :select, collection: Product::LANGUAGES, include_blank: false
       ff.input :title
       ff.input :description
       ff.input :short_desc
      end
-   end
-   f.inputs do
-     submit_tag "Save and add variants"
    end
    f.actions
 
@@ -62,9 +59,7 @@ ActiveAdmin.register Product do
   controller do
     def create
     create! do |format|
-    if params[:commit].include? 'variant'
       format.html {redirect_to new_admin_variant_url({product_id: @product.id})}
-    end
     end
     end
     def update
@@ -87,4 +82,5 @@ def init_defaults
   @product.crystal_amount = 1000
   @product.crystal_type = Product::CRYSTAL_TYPES[0]
   @product.stock_for_sale = Product::STOCK_TYPES[0]
+  @product.texts.new({language: 'en'})
 end

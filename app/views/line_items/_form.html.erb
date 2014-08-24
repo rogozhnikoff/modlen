@@ -1,125 +1,102 @@
 <%= form_for(@line_item) do |f| %>
-  <% if @line_item.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@line_item.errors.count, "error") %> prohibited this line_item from being saved:</h2>
 
-      <ul>
-      <% @line_item.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <div class="option__measure-list">
+    <ul class="measure-list">
+      <li class="measure-list__item ">
+        <label class="measure-list__label measure-list__label_unit_none" for="Name">Models name</label>
+        <input type="text" id="Name" class="input measure-list__input measure-list__input_width"/>
 
-  <div class="field">
-    <%= f.label :units %><br>
-    <%= f.text_field :units %>
+        <p class="option__right-text">Fill in original measurements</p>
+      </li>
+      <li class="measure-list__item">
+        <label class="measure-list__label measure-list__label_unit" for="Age">Age</label>
+        <%= f.text_field :age, class: 'input measure-list__input', id: 'Age'%>
+      </li>
+      <li class="measure-list__item">
+        <label class="measure-list__label" for="height"><span class="measure-list__num">1</span>Height</label>
+        <%= f.text_field :age, class: 'input measure-list__input', id: 'Age'%>
+      </li>
+      <li class="measure-list__item">
+        <label class="measure-list__label" for="chest"><span class="measure-list__num">2</span>Chest</label>
+        <%= f.text_field :chest, class: 'input measure-list__input', id: 'Chest'%>
+        <span class="option__measure-comment-field">Comment for this field</span>
+      </li>
+      <li class="measure-list__item">
+        <label class="measure-list__label" for="waist"><span class="measure-list__num">3</span>Waist</label>
+        <%= f.text_field :waist, class: 'input measure-list__input', id: 'Waist'%>
+      </li>
+      <li class="measure-list__item">
+        <label class="measure-list__label" for="hips"><span class="measure-list__num">4</span>Hips</label>
+        <%= f.text_field :hips, class: 'input measure-list__input', id: 'Hips'%>
+      </li>
+      <li class="measure-list__item">
+        <label class="measure-list__label" for="biceps"><span class="measure-list__num">5</span>Biceps</label>
+        <%= f.text_field :biceps, class: 'input measure-list__input', id: 'Biceps'%>
+      </li>
+      <li class="measure-list__item">
+        <label class="measure-list__label" for="elbow">
+          <span class="measure-list__num">6</span>Elbow</label>
+        <%= f.text_field :elbow, class: 'input measure-list__input', id: 'Elbow'%>
+      </li>
+      <li class="measure-list__item">
+        <label class="measure-list__label" for="wrist"><span class="measure-list__num">7</span>Wrist</label>
+        <%= f.text_field :wrist, class: 'input measure-list__input', id: 'Wrist'%>
+      </li>
+      <li class="measure-list__item">
+        <span class="measure-list__num">8</span>
+        <a class="measure-list__link link dashed" href="#"><u>Collar</u></a>
+        <a class="measure-list__link measure-list__link_active link dashed" href="#"><u>No collar</u></a>
+        <%= f.text_field :collar, class: 'input measure-list__input'%>
+        <div class="item__price item__price_strike item__price_collar"><i class="fa fa-usd"></i>3.-</div>
+      </li>
+      <li class="measure-list__item">
+        <label class="measure-list__label" for="shoulder"><span class="measure-list__num">9</span>Shoulder</label>
+        <%= f.text_field :shoulder, class: 'input measure-list__input', id: 'Shoulder'%>
+      </li>
+      <li class="measure-list__item">
+        <label class="measure-list__label" for="neck"><span class="measure-list__num">10</span>Neck circle</label>
+        <%= f.text_field :neck_circle, class: 'input measure-list__input', id: 'Neck'%>
+      </li>
+      <li class="measure-list__item">
+        <label class="measure-list__label" for="fromNeck">
+          <span class="measure-list__num">11</span> From neck to groin</label>
+        <%= f.text_field :from_neck, class: 'input measure-list__input', id: 'FromNeck'%>
+      </li>
+      <li class="measure-list__item">
+        <label class="measure-list__label" for="LWaist"><span class="measure-list__num">12</span>Length to
+          waist</label>
+        <%= f.text_field :to_waist, class: 'input measure-list__input', id: 'LWaist'%>
+      </li>
+      <li class="measure-list__item">
+        <label class="measure-list__label" for="LSkirt"><span class="measure-list__num">13</span>Length to
+          skirt</label>
+        <%= f.text_field :to_skirt, class: 'input measure-list__input', id: 'LSkirt'%>
+      </li>
+      <li class="measure-list__item">
+        <label for="sleeve" class="measure-list__label"></label>
+        <span class="measure-list__num">14</span>
+        <a class="measure-list__link measure-list__link_active link dashed" href="#"><u>Sleeves</u></a>
+        <a class="measure-list__link link dashed" href="#"><u>No sleeves</u></a>
+        <%= f.text_field :sleeves, class: 'input measure-list__input', id: 'sleeve'%>
+        <span class="option__measure-depicted">as depicted</span>
+      </li>
+      <li class="measure-list__item">
+        <label for="skirt" class="measure-list__label"></label>
+        <span class="measure-list__num">15</span>
+        <a class="measure-list__link measure-list__link_active link dashed" href="#"><u>Skirt</u></a>
+        <a class="measure-list__link link dashed" href="#"><u>No skirt</u></a>
+        <%= f.text_field :skirt, class: 'input measure-list__input', id: 'skirt'%>
+        <div class="item__price item__price_strike item__price_skirt"><i class="fa fa-usd"></i>25.-</div>
+      </li>
+      <li class="measure-list__item">
+        <label class="measure-list__label" for="body"><span class="measure-list__num">16</span>Body</label>
+        <%= f.text_field :body, class: 'input measure-list__input', id: 'Body'%>
+      </li>
+
+      <li class="measure-list__item measure-list__item_offset">
+        <a href="#" class="measure-list__add-link dashed"><u>Add measurements for jumpsuit sewing</u></a>
+      </li>
+    </ul>
   </div>
-  <div class="field">
-    <%= f.label :size %><br>
-    <%= f.number_field :size %>
-  </div>
-  <div class="field">
-    <%= f.label :age %><br>
-    <%= f.number_field :age %>
-  </div>
-  <div class="field">
-    <%= f.label :height %><br>
-    <%= f.number_field :height %>
-  </div>
-  <div class="field">
-    <%= f.label :chest %><br>
-    <%= f.number_field :chest %>
-  </div>
-  <div class="field">
-    <%= f.label :waist %><br>
-    <%= f.number_field :waist %>
-  </div>
-  <div class="field">
-    <%= f.label :hips %><br>
-    <%= f.number_field :hips %>
-  </div>
-  <div class="field">
-    <%= f.label :biceps %><br>
-    <%= f.number_field :biceps %>
-  </div>
-  <div class="field">
-    <%= f.label :elbow %><br>
-    <%= f.number_field :elbow %>
-  </div>
-  <div class="field">
-    <%= f.label :wrist %><br>
-    <%= f.number_field :wrist %>
-  </div>
-  <div class="field">
-    <%= f.label :collar %><br>
-    <%= f.number_field :collar %>
-  </div>
-  <div class="field">
-    <%= f.label :shoulder %><br>
-    <%= f.number_field :shoulder %>
-  </div>
-  <div class="field">
-    <%= f.label :neck_circle %><br>
-    <%= f.number_field :neck_circle %>
-  </div>
-  <div class="field">
-    <%= f.label :from_neck %><br>
-    <%= f.number_field :from_neck %>
-  </div>
-  <div class="field">
-    <%= f.label :to_waist %><br>
-    <%= f.number_field :to_waist %>
-  </div>
-  <div class="field">
-    <%= f.label :to_skirt %><br>
-    <%= f.number_field :to_skirt %>
-  </div>
-  <div class="field">
-    <%= f.label :sleeves %><br>
-    <%= f.number_field :sleeves %>
-  </div>
-  <div class="field">
-    <%= f.label :skirt %><br>
-    <%= f.number_field :skirt %>
-  </div>
-  <div class="field">
-    <%= f.label :body %><br>
-    <%= f.number_field :body %>
-  </div>
-  <div class="field">
-    <%= f.label :crystal_type %><br>
-    <%= f.text_field :crystal_type %>
-  </div>
-  <div class="field">
-    <%= f.label :crystal_amount %><br>
-    <%= f.number_field :crystal_amount %>
-  </div>
-  <div class="field">
-    <%= f.label :special_request %><br>
-    <%= f.text_area :special_request %>
-  </div>
-  <div class="field">
-    <%= f.label :model_name %><br>
-    <%= f.text_field :model_name %>
-  </div>
-  <div class="field">
-    <%= f.label :price %><br>
-    <%= f.text_field :price %>
-  </div>
-  <div class="field">
-    <%= f.label :product_id %><br>
-    <%= f.number_field :product_id %>
-  </div>
-  <div class="field">
-    <%= f.label :variant_id %><br>
-    <%= f.number_field :variant_id %>
-  </div>
-  <div class="field">
-    <%= f.label :order_id %><br>
-    <%= f.number_field :order_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+<%= f.submit %>
+<%end%>

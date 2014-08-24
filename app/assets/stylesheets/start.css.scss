@@ -7691,3 +7691,10 @@ input[type=radio].deadline-radio:checked + label.deadline-label:before {
     background: #dfdfdf;
     cursor: pointer
 }
+a.small_cart {
+  vertical-align: bottom;
+  background: url("/assets/img/icon/small_cart.png") no-repeat;
+  height: 30px;
+  width: 30px;
+  display: inline-block;
+}

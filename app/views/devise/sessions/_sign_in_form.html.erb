@@ -1,0 +1,41 @@
+<div class="option-sign-in">
+
+  <div class="option-sign-text left">
+    Registration will help you track your orders and facilitate order placement in the future
+  </div>
+
+  <div class="sign-in left" style="width: 697px">
+    <div class="sign-in__left">
+
+      <%= form_for(user_resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+        <div class="sign-in__head sign-in__head_mb_12">Sign in as an existing customer</div>
+        <div class="input-wrap input-wrap_mb">
+          <label for="Mail" class="input-label input-label_pr_29">E-mail</label>
+          <%= f.email_field :email, id: 'Mail', class: 'input input_w_154' %>
+        </div>
+        <div class="input-wrap">
+          <label for="pass" class="input-label ">Password</label>
+          <%= f.password_field :password, id: 'pass', class: 'input input_w_154' %>
+          <a href="#" class="input-wrap__eye"></a>
+          <a class="sign-in__reset-pass sign-in__reset-pass_ml dashed" href="#"><u>Password reset</u></a>
+        </div>
+
+      <div class="sign-in__row">
+<!--
+        <a href="#" class="btn btn_white"><span class="btn_in-shadow">Sign in</span></a>
+-->
+        <%= f.submit 'Sign in', class: 'btn btn_white' %>
+        <a href="#" class="sign-in__new sign-in__new_ml dashed"><u>Sign up as a new customer</u></a>
+      </div>
+      <%end%>
+
+    </div>
+
+    <div class="sign-in__right">
+      <img src="<%=image_url 'img/texture/lenta-1_basic.jpg'%>" alt="Sign-in Facebook"/>
+      <a href="#" class="sign-in__link dashed"><u>Sign in with</u></a>
+      <span class="sign-in__f">f</span>
+    </div>
+  </div>
+
+</div>

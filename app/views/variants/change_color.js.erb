@@ -3,13 +3,18 @@ var     block = $('#id_<%=@block%>').attr('class', 'item masonry-brick variant_<
         a = block.find('a.item__img-link.item__img-link_bs'),
         href = a.attr('href'),
         stock = a.find('.item__stock-img'),
+        toCart = block.find('a.small_cart'),
         heart = $('.variant_<%=@variant.id%> .item__like-off');
 
 heart.replaceWith('<%=escape_javascript render partial: 'products/like_heart', locals: {variant: @variant}%>');
 img.attr('src','<%=image_url @variant.pictures.find_by(order: 0).image%>');
-href = href.substring(0, href.length-2)+<%=@variant.id%>;
+href = href.slice(0,href.indexOf('ts/')+3)+<%=@variant.id%>;
 a.attr('href', href);
 a.find('.item__stock-img').remove();
 if (<%=@variant.stock.include? 'Stock'%>) {
     $('<div class="item__stock-img">').insertAfter(block.find('.item__name-link-wrap'));
-};
+}
+
+href = toCart.attr('href');
+href = href.slice(0,href.indexOf('id=')+3)+<%=@variant.id%>;
+toCart.attr('href',href);

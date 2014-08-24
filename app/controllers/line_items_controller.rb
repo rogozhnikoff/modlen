@@ -13,9 +13,10 @@ class LineItemsController < InheritedResources::Base
     end
   end
   def destroy
+    @line_item = LineItem.find params[:id]
     @line_item.destroy
     respond_to do |format|
-      format.html { redirect_to order_path(@order), notice: 'Line item was successfully destroyed.' }
+      format.html { redirect_to line_items_path, notice: 'Line item was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
