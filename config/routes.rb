@@ -23,7 +23,11 @@ end
 
   resources :cart
 
+=begin
   devise_for :users
+=end
+  devise_for :users, :controllers => {sessions: 'sessions'}
+
   ActiveAdmin.routes(self)
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

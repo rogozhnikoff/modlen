@@ -7,7 +7,8 @@
   <div class="sign-in left" style="width: 697px">
     <div class="sign-in__left">
 
-      <%= form_for(user_resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+      <%= form_for(user_resource, :as => resource_name, :url => session_path(resource_name),
+                                  html: {id: 'user_form_main'}, format: :json, remote:true) do |f| %>
         <div class="sign-in__head sign-in__head_mb_12">Sign in as an existing customer</div>
         <div class="input-wrap input-wrap_mb">
           <label for="Mail" class="input-label input-label_pr_29">E-mail</label>

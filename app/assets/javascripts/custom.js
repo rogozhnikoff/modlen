@@ -272,7 +272,7 @@ var ready = function(){
     items.on('focus', function(ev){
         var parent = $(this).addClass(activeInput).parent().addClass(active),
             lab = parent.find('label'),
-            src = '../../img/options/'+lab.attr('for')+'.jpg';
+            src = '/assets/img/options/'+lab.attr('for')+'.jpg';
         img.attr('src', src);
         img.load(function(){
             var hFull = img.height(),

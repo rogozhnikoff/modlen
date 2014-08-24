@@ -1,6 +1,7 @@
 <div class="popup-sign__content">
 
-  <%= form_for(user_resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+  <%= form_for(user_resource, as: resource_name, url: session_path(resource_name),
+                              format: :json, remote: true) do |f| %>
 
     <div class="input-wrap input-wrap_mb">
       <%= f.label 'E-mail', class: "input-label input-label_pr_31"%>
