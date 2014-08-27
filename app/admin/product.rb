@@ -1,7 +1,8 @@
 ActiveAdmin.register Product do
 
   permit_params  :name, :price, :old_price, :description, :short_desc, :crystal_type, :crystal_amount,
-                 :sleeves, :skirt, :collar, :stock_for_sale, :title, :public, :images,
+                 :sleeves, :sleeves_price, :skirt, :skirt_price, :collar, :collar_price, :stock_for_sale, :title, :public, :images,
+                 :sleeves_present, :collar_present, :skirt_present,
                  texts_attributes: [:id, :language, :description, :short_desc, :title, :_destroy]
   # See permitted parameters documentation:
   # https://github.com/gregbell/active_admin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
@@ -23,12 +24,24 @@ ActiveAdmin.register Product do
      f.input :old_price
      f.input :public
    end
-   f.inputs 'details' do
+   f.inputs 'crystals' do
      f.input :crystal_type, as: :select, collection: Product::CRYSTAL_TYPES, :include_blank => false
      f.input :crystal_amount, value: 1000
+   end
+   f.inputs 'sleeves' do
      f.input :sleeves
+     f.input :sleeves_present
+     f.input :sleeves_price
+  end
+  f.inputs 'skirt' do
      f.input :skirt
+     f.input :skirt_present
+     f.input :skirt_price
+  end
+  f.inputs 'collar' do
      f.input :collar
+     f.input :collar_present
+     f.input :collar_price
    end
    f.inputs do
      f.has_many :texts, allow_destroy: true, heading: 'Add translation' do |ff|

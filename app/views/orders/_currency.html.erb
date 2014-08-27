@@ -1,0 +1,10 @@
+<div class="currency left">
+  <p class="currency__text currency__text_bl <%= 'active' if currency == 'eur' %>" data-cur ="eur"><i class="fa fa-eur"></i></p>
+  <p class="currency__text currency__text_border <%= 'active' if currency == 'usd' %>" data-cur ="usd"><i class="fa fa-usd"></i></p>
+  <p class="currency__text currency__text_br <%= 'active' if currency == 'gbp' %>" data-cur ="gbp"><i class="fa fa-gbp"></i></p>
+</div>
+<div style="display: none">
+  <%= button_to 'eur', change_currency_orders_path(cur: 'eur', item: item), remote: true %>
+  <%= button_to 'usd', change_currency_orders_path(cur: 'usd', item: item), remote: true %>
+  <%= button_to 'gbp', change_currency_orders_path(cur: 'gbp', item: item), remote: true %>
+</div>

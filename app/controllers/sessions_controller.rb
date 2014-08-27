@@ -10,10 +10,24 @@ class SessionsController < Devise::SessionsController
     scope = Devise::Mapping.find_scope!(resource_or_scope)
     resource ||= resource_or_scope
     sign_in(scope, resource) unless warden.user(scope) == resource
+    resource.orders << @order
+    guest = Guest.find session[:guest_id]
+    begin
+    rescue
+      guest = Guest.new
+    end
+    add_variants resource, guest
     return render json: {success: true}
   end
 
   def failure
     return render :json => {:success => false, :errors => ["Login failed."]}
+  end
+
+  private
+  def add_variants user, guest
+    guest.variants.each do |var|
+      user.variants << var unless user.variants.include? var
+    end
   end
 end

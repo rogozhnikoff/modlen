@@ -1,6 +1,212 @@
-<h1>Editing line_item</h1>
+<div class="option-wrap">
 
-<%= render 'form' %>
+<div class="option-breadcrumb">
+  <div class="breadcrumb-wrap breadcrumb-wrap_offset left">
+    <%= render partial: 'orders/bread_crumbs', locals: {page: 'size'} %>
+  </div>
+  <%= render partial: 'orders/currency', locals: {currency: @currency.code, item: @line_item} %>
+</div>
+<div class="option">
+  <div class="option__left">
 
-<%= link_to 'Show', @line_item %> |
-<%= link_to 'Back', line_items_path %>
+    <div class="option__item-prev">
+      <div class="option__control-bar">
+        <div class="option__control-bar-inner">
+          <a href="#" class="order__cross"><i class="fa fa-times"></i></a>
+        </div>
+      </div>
+      <div class="order__img order__img_mt_25">
+        <a href="#" class="order__img-link">
+          <%= image_tag @line_item.variant.pictures.find_by(order: 0).image.url %>
+        </a>
+        <a href="#" class="order__rotator"></a>
+      </div>
+    </div>
+
+    <p class="option__color-text">We have a small chance that we'll not find the color which you choosed in the
+      market store, in that's way contact you as soon as possible.</p>
+
+    <p class="option__sewing">Sewing:</p>
+
+    <div class="option__clear">
+      <i class="fa fa-times"></i>
+      <a href="#" class="option__clear-all dashed"><u>Clear all fields</u></a>
+    </div>
+    <div class="option__mirror">
+      <div class="option__mirror-img">
+        <img src="<%=image_url 'img/options/fromNeck.jpg'%>">
+      </div>
+      <p class="option__mirror-info">Stand in front of the mirror with your heels together, keeping tape straigth and
+        parralel to the floor.Measure around the fullest part og your hips.</p>
+    </div>
+    <a class="option__videoguide dashed" href="#"><u>Watch videoguide</u></a>
+  </div>
+
+
+  <div class="option__center">
+    <div class="box box_bt" style="width: 557px">
+      <div class="box__inner box__inner_pt_21">
+
+        <div class="order__number">Order #973-1</div>
+        <a href="#" class="order__name-link order__name-link_fs_17">Rhythmic Gymnastics Leotard #24</a>
+            <span class="option__color-switch option__color-switch_ml_10">
+              <i class="fa fa-sort"></i><i class="fa fa-circle"></i>Pink & Green</span>
+
+        <p class="option__text">The ready for sale rhythmic leotard is made of stretch lycra,
+          <span class="option__text-mesh"><i class="fa fa-sort"></i> transparent mesh</span>
+          , decorated by applications. The leotard is decorated by paillettes. At the front and at the back the are 1000
+          Swarovski crystal. Great look on any gymnast!</p>
+
+        <div class="option__option-list">
+          <ul class="option-list">
+            <li class="option-list__item">
+              <a href="#" class="option-list__link option-list__link_c_green <%= 'active' if @line_item.crystal_type== 'No crystals' %> dashed"><u>No crystals</u></a>
+            </li>
+            <li class="option-list__item">
+              <a href="#" class="option-list__link option-list__link_c_green <%= 'active' if @line_item.crystal_type== 'Basic' %> dashed"><u>Basic</u></a>
+            </li>
+            <li class="option-list__item">
+              <a href="#" class="option-list__link option-list__link_c_green <%= 'active' if @line_item.crystal_type== 'Swarowski' %> dashed"><u>Swarowski</u></a></li>
+            <li class="option-list__item">
+              <div class="option-list__count">
+                <div class="option-list__arrow">
+                  <a href="#" class="option-list__arrow-up"></a>
+                  <a href="#" class="option-list__arrow-down"></a>
+                </div>
+                <div class="option-list__info"><span class="option-list__info_fw"><%= @line_item.crystal_amount %> </span> crystals</div>
+              </div>
+            </li>
+            <li class="option-list__item option-list__item_position">
+              <a href="#" class="option-list__choose link"><u>How choose crystals</u></a>
+            </li>
+          </ul>
+          <a class="option__free-cryst" href="#">FREE</a>
+        </div>
+
+        <div class="option__adjust">
+
+          <div class="option__adjust-top">
+            <h4> Adjust the color of the leotard</h4>
+            <a class="option__free-adjust" href="#">FREE</a>
+          </div>
+
+          <div class="option__replace-list-wrap">
+            <ul class="replace-list">
+              <li class="replace-list__item replace-list__item_head">Replace</li>
+              <li class="replace-list__item"><span class="replace-list__color icon-pink">Pink</span></li>
+              <li class="replace-list__item"><span class="replace-list__color icon-green">Green</span></li>
+              <li class="replace-list__item"><span class="replace-list__color icon-white">White</span></li>
+            </ul>
+          </div>
+          <div class="option__color-list">
+            <ul class="color-list">
+              <li class="color-list__item color-list__item_head">Select the color</li>
+              <li class="color-list__item">
+                    <span  class="option__color-switch option__color-switch_orange">
+                      <i class="fa fa-sort"></i><i class="fa fa-circle"></i>Orange</span></li>
+              <li class="color-list__item">
+                    <span  class="option__color-switch option__color-switch_yellow">
+                      <i class="fa fa-sort"></i><i class="fa fa-circle"></i>Yellow</span></li>
+              <li class="color-list__item">
+                    <span  class="option__color-switch option__color-switch_silver">
+                      <i class="fa fa-sort"></i><i class="fa fa-circle"></i>Silver</span></li>
+            </ul>
+          </div>
+          <div class="option__textarea-top">
+            <textarea name="adjust" id="adjustColor" cols="20" rows="5" class="option__textarea"
+                      placeholder="If you have any other additions
+          about color,just write your comments here please.
+          "></textarea>
+          </div>
+        </div>
+
+
+        <div class="option__size-list">
+          <ul class="size-list">
+            <li class="size-list__item"><a class="size-list__link dashed" href="#"><u>Pick size</u></a></li>
+            <li class="size-list__item size-list__item_ml_7">
+              <a class="size-list__link size-list__link_active dashed" href="#"><u>Custom fit</u></a>
+            </li>
+            <li class="size-list__item"><a class="size-list__arrow" href="#"></a></li>
+            <li class="size-list__item size-list__item_ml_4">
+              <a class="size-list__link dashed" href="#"><u>Exactly by measurement</u></a></li>
+            <li class="size-list__item size-list__item_ml_7p">
+              <a class="size-list__link size-list__link_active dashed" href="#"><u>For growth</u></a>
+            </li>
+          </ul>
+          <div class="option__unit-wrap">
+            <a class="option__unit option__unit_active dashed" href="#"><u>CM</u></a>
+            <a class="option__unit dashed" href="#"><u>Inches</u></a>
+          </div>
+        </div>
+
+        <div class="option__user-measure">
+          <div class="option__order-num">Fill measurements like in order №
+            <span class="option__order-num_control"><i class="fa fa-sort"></i>973-1; Leo № 39 for Nancy</span>
+          </div>
+          <%= render 'form' %>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+
+  <div class="option__right">
+    <div class="option__price"><i class="fa fa-<%= @currency.code %>"></i><%=@line_item.get_price @currency%>.-</div>
+
+  </div>
+
+</div>
+
+
+
+<%= render partial: 'devise/sessions/sign_in_form' %>
+
+<div class="option-total">
+
+  <div class="summary summary_br summary_inline" style="width: 555px">
+    <div class="summary__head summary__head_br-top">
+      <span class="summary__head_fw">Leotards Total</span> without 20% tax, 2,5% transaction & sheeping fees
+    </div>
+
+    <div class="summary__inner summary__inner_pb_6 summary__inner_br_top">
+
+      <div class="summary__left summary__left_w_28">
+        <div class="price">
+          <div class="price__amount"><i class="fa fa-<%= @currency.code %>"></i><%= @order.full_price @currency%>.-</div>
+        </div>
+      </div>
+      <div class="summary__center">
+        <a href="#" id= "next_step" class="btn btn_green btn_box-shadow left"><span class="btn_in-shadow">Next step</span></a>
+      </div>
+      <div class="summary__right">
+        <div class="summary__img">
+          <a class="summary__save-shopping link" href="#"><u>Save & Continue Shopping</u></a>
+        </div>
+      </div>
+
+      <p class="summary__info summary__info_offset">To the payment and delivery</p>
+
+    </div>
+  </div>
+
+  <div class="cancel cancel_mt_9">
+    <div class="cancel__left cancel__left_w_132">
+      <a href="#" class="cancel__order-link">Cancel order</a>
+    </div>
+    <div class="cancel__right">
+      <p class="cancel__specify">It remains to specify:
+        <a href="#" class="cancel__red-link dashed"><u>City</u></a>,
+        <a href="#" class="cancel__red-link dashed"><u>Street address</u></a>,
+        <a href="#" class="cancel__red-link dashed"><u>Country</u></a>,
+        <a href="#" class="cancel__red-link dashed"><u>Zip code</u></a>,
+        <a href="#" class="cancel__red-link dashed"><u>Email</u></a>
+      </p>
+    </div>
+  </div>
+
+
+</div>
+
+</div>

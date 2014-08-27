@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140822111606) do
+ActiveRecord::Schema.define(version: 20140827140528) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -41,6 +41,22 @@ ActiveRecord::Schema.define(version: 20140822111606) do
     t.integer "variant_id"
   end
 
+  create_table "crystals", force: true do |t|
+    t.string   "name"
+    t.integer  "amount"
+    t.integer  "price"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "currencies", force: true do |t|
+    t.string   "name"
+    t.string   "code"
+    t.decimal  "rate"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "deliveries", force: true do |t|
     t.date     "delivery_date"
     t.string   "deadline"
@@ -58,6 +74,7 @@ ActiveRecord::Schema.define(version: 20140822111606) do
     t.integer  "order_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "price"
   end
 
   create_table "guests", force: true do |t|
@@ -110,9 +127,25 @@ ActiveRecord::Schema.define(version: 20140822111606) do
     t.integer  "order_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "status"
+    t.text     "colors_additions"
+    t.boolean  "collar_present"
+    t.boolean  "skirt_present"
+    t.boolean  "sleeves_present"
   end
 
   create_table "orders", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+    t.string   "status"
+  end
+
+  create_table "payments", force: true do |t|
+    t.string   "type"
+    t.string   "status"
+    t.decimal  "amount"
+    t.integer  "order_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -145,6 +178,12 @@ ActiveRecord::Schema.define(version: 20140822111606) do
     t.boolean  "public"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "sleeves_price",   default: 0
+    t.integer  "skirt_price",     default: 0
+    t.integer  "collar_price",    default: 0
+    t.boolean  "collar_present"
+    t.boolean  "skirt_present"
+    t.boolean  "sleeves_present"
   end
 
   create_table "texts", force: true do |t|

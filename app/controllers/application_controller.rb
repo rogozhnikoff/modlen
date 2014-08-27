@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   before_action :set_guest_or_user
+  before_action :current_currency
+  before_action :set_order
   def authenticate_admin_user!
     authenticate_user!
     unless current_user.admin?
@@ -24,5 +26,27 @@ class ApplicationController < ActionController::Base
   rescue ActiveRecord::RecordNotFound
     @guest = Guest.create!
     session[:guest_id] = @guest.id
+  end
+
+  def current_currency
+    if session[:currency]
+    @currency = Currency.find_by_code session[:currency]
+    else
+    session[:currency] = 'eur'
+    @currency = Currency.find_by_code('eur')
+      end
+  end
+
+  def destroy_temp_items
+    @order.line_items.each do |item|
+      item.delete if item.status == 'temp'
+    end
+  end
+private
+  def set_order
+    @order = Order.find(session[:order_id])
+  rescue ActiveRecord::RecordNotFound
+    @order = Order.create!
+    session[:order_id] = @order.id
   end
 end

@@ -1,0 +1,11 @@
+var item=$('#line_item_<%= @line_item.id %>'),
+    fullPrice = $('div.price__amount').contents().last()[0],
+    cart = $('.head__cart');
+<%if @line_item.status == 'canceled'%>
+item.replaceWith('<%= escape_javascript render partial: 'deliveries/canceled_item', locals: {line_item: @line_item, cur: @currency} %>');
+<%else%>
+item.replaceWith('<%= escape_javascript render partial: 'deliveries/line_item', locals: {line_item: @line_item, cur: @currency} %>');
+<%end%>
+
+fullPrice.textContent = '<%= @order.full_price @currency%>.-';
+cart.replaceWith('<%= escape_javascript render partial: 'layouts/cart', locals: {order:@order} %>');

@@ -1,0 +1,10 @@
+    <ul class="breadcrumb">
+      <li class="breadcrumb__item"><a class="breadcrumb__link <%='breadcrumb__link_active' if page=='size'%>"
+                                      href="<%=edit_line_item_path(@order.line_items[0]) unless @order.nil?%>">CUSTOM FIT</a></li>
+      <li class="breadcrumb__item"><i class="breadcrumb__arrow"></i></li>
+      <li class="breadcrumb__item"><a class="breadcrumb__link <%='breadcrumb__link_active' if page=='cart'%>
+       <%='breadcrumb__link_next' if page=='size'%>" href="<%= cart_url %>">CART</a></li>
+      <li class="breadcrumb__item"><i class="breadcrumb__arrow"></i></li>
+      <li class="breadcrumb__item"><a class="breadcrumb__link <%='breadcrumb__link_active' if page=='checkout'%>
+      <%='breadcrumb__link_next' if page=='cart'%>" href="<%= checkout_order_path @order %>">CHECKOUT</a></li>
+    </ul>

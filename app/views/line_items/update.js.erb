@@ -1,0 +1,21 @@
+switch ('<%= params[:commit] %>') {
+    case 'remote':
+        console.log(1);
+        if ($('.option__price').length > 0) {
+            console.log(2);
+            $('.option__price').contents().last()[0].textContent = '<%= @line_item.get_price @currency %>.-'
+            $('.price__amount').contents().last()[0].textContent = '<%= @order.full_price @currency %>.-'
+        } else {
+            $('.price__amount').contents().last()[0].textContent = <%= @line_item.get_price @currency %>
+        }
+        break;
+    case 'next':
+        window.location ='<%= @cart %>';
+        break;
+    case 'new':
+        window.location = '<%= @update_url %>';
+        break;
+    default:
+        window.location = '/';
+        break;
+}

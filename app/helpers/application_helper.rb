@@ -11,5 +11,11 @@ module ApplicationHelper
     @devise_mapping ||= Devise.mappings[:user]
   end
 
+  def cart_url
+    edit_delivery_path(@order.delivery)
+  rescue
+    new_delivery_path
+  end
+
 end
 

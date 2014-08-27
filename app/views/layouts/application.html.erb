@@ -62,10 +62,7 @@
               </div>
               <a href="#" class="head__my-link dashed"><u>My Modlen</u></a>
             </div>
-            <div class="head__cart">
-              <span class="head__cart-circle">17</span>
-              <a href="#" class="head__cart-link">Cart</a>
-            </div>
+            <%= render partial: 'layouts/cart', locals: {order:@order} %>
             <div class="head__free">
               <a href="#" class="head__shipping-link">Free shipping</a> to New York<span class="head__and"> &</span> USA
             </div>

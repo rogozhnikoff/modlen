@@ -3787,14 +3787,14 @@ body * img::-webkit-selection {
     right: -311px
 }
 
-.item__price_collar, .item__price_skirt {
+.item__price_collar, .item__price_skirt,  .item__price_sleeves {
     position: absolute;
     display: block;
     top: 4px;
     width: auto
 }
 
-.item__price_skirt {
+.item__price_skirt, .item__price_sleeves {
     right: -314px
 }
 

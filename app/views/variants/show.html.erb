@@ -64,8 +64,8 @@
         <div class="summary__inner">
           <div class="price">
             <div class="price__left">
-              <div class="price__amount"><i class="fa fa-usd"></i><%=@product.price%></div>
-              <div class="price__around">AROUND <i class="fa fa-eur"></i>88 / <i class="fa fa-gbp"></i>72</div>
+              <div class="price__amount"><i class="fa fa-<%= @currency.code %>"></i><%=@product.get_price @currency%></div>
+              <div class="price__around">AROUND <i class="fa fa-usd"></i><%= @product.get_price Currency.find_by_code 'usd' %> / <i class="fa fa-gbp"></i><%= @product.get_price Currency.find_by_code 'gbp' %></div>
             </div>
             <div class="price__right">
               <%=render partial: 'variants/like_heart', locals: {variant: @variant}%>
@@ -75,24 +75,24 @@
           <div class="summary__options-list">
             <ul class="option-list">
               <li class="option-list__item">
-                <a href="#" class="option-list__link option-list__link_active  dashed"><u>Basic</u></a>
+                <a href="#" class="option-list__link option-list__link_active <%= 'active' if @line_item.crystal_type== 'Basic' %> dashed"><u>Basic</u></a>
               </li>
               <li class="option-list__item">
-                <a href="#" class="option-list__link dashed"><u>Swarowski</u></a></li>
+                <a href="#" class="option-list__link dashed <%= 'active' if @line_item.crystal_type== 'Swarowski' %>"><u>Swarowski</u></a></li>
               <li class="option-list__item">
                 <div class="option-list__count">
                   <div class="option-list__arrow">
                     <a href="#" class="option-list__arrow-up"></a>
                     <a href="#" class="option-list__arrow-down"></a>
                   </div>
-                  <div class="option-list__info"><span class="option-list__info_fw">1000 </span> crystals</div>
+                  <div class="option-list__info"><span class="option-list__info_fw"><%= @line_item.crystal_amount %> </span> crystals</div>
                 </div>
               </li>
             </ul>
           </div>
 
           <div class="summary__btn-wrap">
-            <a href="<%= new_line_item_path({variant_id: @variant}) %>" class="btn btn_green btn_box-shadow left"><span class="btn_in-shadow">Add to cart</span></a>
+            <a href="#" id= "btn_add_to_cart" class="btn btn_green btn_box-shadow left"><span class="btn_in-shadow">Add to cart</span></a>
 
             <div class="summary__pay-variant">
               <a class="summary__pay-link" href="#"><img src="<%=image_url 'img/icon/pay-VMP.png'%>" alt="pay"/></a>
@@ -175,4 +175,5 @@
 </div>
 
 </div>
+<div style="display: none"><%= render 'line_items/form' %></div>
 

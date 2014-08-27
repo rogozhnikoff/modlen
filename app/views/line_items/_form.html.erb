@@ -1,4 +1,4 @@
-<%= form_for(@line_item) do |f| %>
+<%= form_for(@line_item, remote:true) do |f| %>
 
   <div class="option__measure-list">
     <ul class="measure-list">
@@ -43,11 +43,12 @@
         <%= f.text_field :wrist, class: 'input measure-list__input', id: 'Wrist'%>
       </li>
       <li class="measure-list__item">
+        <label for="collar" class="measure-list__label"></label>
         <span class="measure-list__num">8</span>
-        <a class="measure-list__link link dashed" href="#"><u>Collar</u></a>
-        <a class="measure-list__link measure-list__link_active link dashed" href="#"><u>No collar</u></a>
-        <%= f.text_field :collar, class: 'input measure-list__input'%>
-        <div class="item__price item__price_strike item__price_collar"><i class="fa fa-usd"></i>3.-</div>
+        <a class="measure-list__link <%= 'measure-list__link_active' if @line_item.collar_present%> link dashed" href="#"><u>Collar</u></a>
+        <a class="measure-list__link <%= 'measure-list__link_active' unless @line_item.collar_present%> link dashed" href="#"><u>No collar</u></a>
+        <%= f.text_field :collar, class: 'input measure-list__input', id: 'Collar'%>
+        <div class="item__price item__price_collar <%='item__price_strike' unless @line_item.collar_present%>"><i class="fa fa-<%=@currency.code%>"></i><%=@line_item.collar_price @currency%>.-</div>
       </li>
       <li class="measure-list__item">
         <label class="measure-list__label" for="shoulder"><span class="measure-list__num">9</span>Shoulder</label>
@@ -73,30 +74,51 @@
         <%= f.text_field :to_skirt, class: 'input measure-list__input', id: 'LSkirt'%>
       </li>
       <li class="measure-list__item">
-        <label for="sleeve" class="measure-list__label"></label>
+        <label for="sleeves" class="measure-list__label"></label>
         <span class="measure-list__num">14</span>
-        <a class="measure-list__link measure-list__link_active link dashed" href="#"><u>Sleeves</u></a>
-        <a class="measure-list__link link dashed" href="#"><u>No sleeves</u></a>
+        <a class="measure-list__link <%= 'measure-list__link_active' if @line_item.sleeves_present%> link dashed" href="#"><u>Sleeves</u></a>
+        <a class="measure-list__link <%= 'measure-list__link_active' unless @line_item.sleeves_present%> link dashed" href="#"><u>No sleeves</u></a>
         <%= f.text_field :sleeves, class: 'input measure-list__input', id: 'sleeve'%>
         <span class="option__measure-depicted">as depicted</span>
+        <div class="item__price item__price_sleeves <%='item__price_strike' unless @line_item.sleeves_present%>"><i class="fa fa-<%=@currency.code%>"></i><%=@line_item.sleeves_price @currency%>.-</div>
       </li>
       <li class="measure-list__item">
         <label for="skirt" class="measure-list__label"></label>
         <span class="measure-list__num">15</span>
-        <a class="measure-list__link measure-list__link_active link dashed" href="#"><u>Skirt</u></a>
-        <a class="measure-list__link link dashed" href="#"><u>No skirt</u></a>
+        <a class="measure-list__link <%= 'measure-list__link_active' if @line_item.skirt_present%> link dashed" href="#"><u>Skirt</u></a>
+        <a class="measure-list__link <%= 'measure-list__link_active' unless @line_item.skirt_present%> link dashed" href="#"><u>No skirt</u></a>
         <%= f.text_field :skirt, class: 'input measure-list__input', id: 'skirt'%>
-        <div class="item__price item__price_strike item__price_skirt"><i class="fa fa-usd"></i>25.-</div>
+        <div class="item__price item__price_skirt <%='item__price_strike' unless @line_item.skirt_present%>"><i class="fa fa-<%=@currency.code%>"></i><%=@line_item.skirt_price @currency%>.-</div>
       </li>
       <li class="measure-list__item">
         <label class="measure-list__label" for="body"><span class="measure-list__num">16</span>Body</label>
         <%= f.text_field :body, class: 'input measure-list__input', id: 'Body'%>
       </li>
 
+      <%= f.hidden_field :order_id %>
+      <%= f.hidden_field :variant_id %>
+      <%= f.hidden_field :crystal_type %>
+      <%= f.hidden_field :crystal_amount %>
+      <%= f.hidden_field :colors_additions%>
+      <%= f.check_box :collar_present, style: 'display :none'%>
+      <%= f.check_box :skirt_present, style: 'display :none'%>
+      <%= f.check_box :sleeves_present, style: 'display :none'%>
       <li class="measure-list__item measure-list__item_offset">
         <a href="#" class="measure-list__add-link dashed"><u>Add measurements for jumpsuit sewing</u></a>
       </li>
     </ul>
   </div>
-<%= f.submit %>
+    <div class="option__request">
+      <div class="option__special-request">Special request</div>
+      <div class="option__textarea-wrap">
+        <%= f.text_area :special_request, id:'specialRequest', cols: 20, rows: 5, class: 'option__textarea-special',
+                        placeholder: 'If you have already discussed the details
+              of your order, please duplicate the result here'%>
+      </div>
+    </div>
+
+    <%= submit_tag 'continue', id: 'btn_continue', style: 'display: none' %>
+    <%= submit_tag 'next', id: 'btn_next', style: 'display: none' %>
+    <%= submit_tag 'new', id:'btn_new', style: 'display: none' %>
+    <%= submit_tag 'remote', id: 'btn_remote', style: 'display: none' %>
 <%end%>

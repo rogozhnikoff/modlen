@@ -1,13 +1,25 @@
 Rails.application.routes.draw do
   resources :deliveries
 
-  resources :orders
+  resources :orders do
+    member do
+      get :checkout
+    end
+    collection do
+      post :change_currency
+    end
+  end
 
   get 'orders/show'
 
   get 'orders/destroy'
 
-  resources :line_items
+  resources :line_items do
+    member do
+    delete :cancel
+    post :put_back
+      end
+  end
 
   resources :products
 

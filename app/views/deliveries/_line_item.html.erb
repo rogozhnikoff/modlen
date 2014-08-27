@@ -1,0 +1,50 @@
+<div class="order" id="line_item_<%= line_item.id %>">
+  <% if line_item.status == 'canceled'%>
+      <div class="order__close">
+  <%end%>
+  <div class="order__left  ">
+
+    <div class="order__control-bar">
+      <div class="order__control-bar-inner">
+        <%= link_to cancel_line_item_path(line_item), class: 'order__cross order__cross_mb_7', method: :delete, remote: true do%>
+        <i class="fa fa-times"></i>
+            <%end%>
+        <a href="#" class="order__like-num order__like-num_mb_15">+1</a>
+        <%=render partial: 'variants/like_heart', locals: {variant: line_item.variant}%>
+      </div>
+    </div>
+
+    <div class="order__img order__img_offset ">
+      <a href="#" class="order__img-link">
+        <img src="<%= line_item.variant.pictures.find_by(order: 0).image %>" alt=""/>
+      </a>
+    </div>
+  </div>
+
+  <div class="order__center">
+    <div class="box box_bt" style="width: 557px">
+      <div class="box__inner">
+
+        <div class="order__number">Order #973-1</div>
+        <a href="#" class="order__name-link order__name-link_fs_17">Rhythmic Gymnastics Leotard № 24</a>
+        <a href="#" class="order__color-switch order__color-switch_pink">Pink & Green</a>
+
+        <p class="order__text"><%= line_item.variant.product.texts.find_by(language: 'en').description %></p>
+        <%= link_to edit_line_item_path(line_item), class: 'order__measure link' do%>
+        <u>Define measurements</u>
+            <%end%>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="order__right <%= 'order__right_close' if line_item.status == 'canceled' %>">
+    <div class="order__price order__price_position"><i class="fa fa-<%= cur.code %>"></i><%= line_item.get_price cur %>.-</div>
+    <% if line_item.status == 'canceled'%>
+        <a href="#" class="btn btn_white"><span class="btn_in-shadow">Put back</span></a>
+<%end%>
+  </div>
+  <% if line_item.status == 'canceled'%>
+      </div>
+  <%end%>
+</div>

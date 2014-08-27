@@ -1,0 +1,37 @@
+var place = {},
+    fullPrice = $('div.price__amount, .order-info__price_lh'),
+    itemPriceNum = <%= @order.full_price @currency%>,
+    discount = 0;
+
+<%unless @line_item.nil?%>
+var itemPrice = $('.option__price'),
+    collarPrice = $('.item__price_collar'),
+    skirtPrice = $('.item__price_skirt'),
+    sleevesPrice = $('.item__price_sleeves');
+
+collarPrice.contents().last()[0].textContent = '<%= @line_item.collar_price @currency%>.-';
+collarPrice.find('i').removeClass().addClass('fa fa-<%= @currency.code %>');
+
+skirtPrice.contents().last()[0].textContent = '<%= @line_item.skirt_price @currency%>.-';
+skirtPrice.find('i').removeClass().addClass('fa fa-<%= @currency.code %>');
+
+sleevesPrice.contents().last()[0].textContent = '<%= @line_item.sleeves_price @currency%>.-';
+sleevesPrice.find('i').removeClass().addClass('fa fa-<%= @currency.code %>');
+
+if (sleevesPrice.hasClass('item__price_strike')) discount += <%= @line_item.sleeves_price @currency%>
+if (collarPrice.hasClass('item__price_strike')) discount += <%= @line_item.collar_price @currency%>
+if (skirtPrice.hasClass('item__price_strike')) discount += <%= @line_item.skirt_price @currency%>
+
+itemPrice.contents().last()[0].textContent = (<%= @line_item.get_price @currency%> - discount).toString() + '.-';
+itemPrice.find('i').removeClass().addClass('fa fa-<%= @currency.code %>');
+
+<%end%>
+
+fullPrice.contents().last()[0].textContent = (itemPriceNum - discount).toString()+'.-';
+fullPrice.find('i').removeClass().addClass('fa fa-<%= @currency.code %>');
+<%@order.line_items.each do |item|%>
+place = $('#line_item_<%= item.id %> .order__price_position');
+place.find('i').removeClass().addClass('fa fa-<%= @currency.code %>');
+place.contents().last()[0].textContent = '<%= item.get_price @currency %>.-';
+<%end%>
+

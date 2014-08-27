@@ -2,6 +2,17 @@ class VariantsController < ApplicationController
   def show
     @variant = Variant.find params[:id]
     @product = @variant.product
+    @line_item = LineItem.new()
+    @line_item.variant = @variant
+    @line_item.crystal_type = @line_item.variant.product.crystal_type
+    @line_item.crystal_amount = @line_item.variant.product.crystal_amount
+
+    @line_item.sleeves_present =@line_item.variant.product.sleeves_present
+    @line_item.skirt_present =@line_item.variant.product.skirt_present
+    @line_item.collar_present =@line_item.variant.product.collar_present
+    @line_item.order = @order
+    @line_item.status = 'temp'
+    @line_item.save
   end
   def like
     @variant =  Variant.find params[:id]

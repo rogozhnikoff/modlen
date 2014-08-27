@@ -7,4 +7,11 @@ class Product < ActiveRecord::Base
   CRYSTAL_TYPES = ['Basic', 'Swarowski', 'No crystals']
   STOCK_TYPES = ['On order', 'Stock and order', 'Stock for sale']
   LANGUAGES = %w(en)
+
+  def get_price (cur)
+    (self.price*cur.rate).ceil
+  end
+  def get_old_price (cur)
+    (self.old_price*cur.rate).ceil
+  end
 end

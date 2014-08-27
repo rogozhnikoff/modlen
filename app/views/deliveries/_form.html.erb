@@ -1,69 +1,86 @@
 <%= form_for(@delivery) do |f| %>
-  <% if @delivery.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@delivery.errors.count, "error") %> prohibited this delivery from being saved:</h2>
-
-      <ul>
-      <% @delivery.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+    <%= f.hidden_field :delivery_date %>
+    <%= f.hidden_field :deadline %>
+    <%= f.hidden_field :speed %>
+      <ul class="data-list">
+        <li class="data-list__item">
+          <p class="data-list__info">Shipping speed</p>
+          <div class="data-list__count">
+            <div class="option-list__arrow">
+              <a href="#" class="option-list__arrow-up"></a>
+              <a href="#" class="option-list__arrow-down"></a>
+            </div>
+            <div class="option-list__info"><span class="option-list__info_fw">7 </span>business days</div>
+            <span class="data-list__ems">EMS</span>
+            <div class="data-list__price"><i class="fa fa-usd"></i>65.-</div>
+          </div>
+        </li>
+        <li class="data-list__item data-list__item_mt_20">
+          <label class="data-list__label" for="name">Full name</label>
+          <div class="data-list__field">
+            <%= f.text_field :full_name, class: 'input data-list__input', id: 'name'%>
+            <div class="data-list__explanation">eg. Nancy Stachham</div>
+          </div>
+        </li>
+        <li class="data-list__item data-list__item_mt_10">
+          <label class="data-list__label" for="street">Street address</label>
+          <div class="data-list__field">
+            <%= f.text_field :street, class: 'input data-list__input', id: 'street'%>
+            <div class="data-list__explanation">eg. 3740 Atlantic Ave.,apartment 31</div>
+          </div>
+        </li>
+        <li class="data-list__item data-list__item_mt_13">
+          <label class="data-list__label" for="city">City</label>
+          <div class="data-list__field">
+            <%= f.text_field :city, class: 'input data-list__input', id: 'city'%>
+          </div>
+        </li>
+        <li class="data-list__item data-list__item_mt_18">
+          <label class="data-list__label" for="state">State/Province</label>
+          <div class="data-list__field">
+            <%= f.text_field :state, class: 'input data-list__input', id: 'state'%>
+          </div>
+        </li>
+        <li class="data-list__item data-list__item_mt_13">
+          <p class="data-list__info">Country</p>
+          <div class="data-list__field">
+            <div class="data-list__country-switch"><i class="fa fa-sort"></i>New Zealand</div>
+          </div>
+        </li>
+        <li class="data-list__item data-list__item_mt_18">
+          <label class="data-list__label" for="ZipCode">Zip code</label>
+          <div class="data-list__field">
+            <%= f.text_field :zip, class: 'input data-list__input', id: 'ZipCode'%>
+            <div class="data-list__explanation">Enter n/a if not applicable</div>
+          </div>
+        </li>
+        <li class="data-list__item data-list__item_mt_15">
+          <label class="data-list__label" for="email">Email</label>
+          <div class="data-list__field">
+            <%= f.email_field :email, class: 'input data-list__input', id: 'email'%>
+          </div>
+        </li>
+        <li class="data-list__item data-list__item_mt_15">
+          <label class="data-list__label" for="tel">Telephone No.</label>
+          <div class="data-list__field data-list__field_mr_39">
+            <%= f.text_field :tel, class: 'input data-list__input', id: 'tel'%>
+            <div class="data-list__explanation">only used if service needs to set up a delivery time</div>
+          </div>
+        </li>
+        <li class="data-list__item data-list__item_mt_15">
+          <label class="data-list__label data-list__label_lh_13" for="addInf">Additional info</label>
+          <div class="data-list__field ">
+            <%= f.text_area :info, class: 'input data-list__input_text', id: 'addInf'%>
+            <div class="data-list__explanation">Not necessary</div>
+          </div>
+        </li>
+        <li class="data-list__item data-list__item_mt">
+          <label class="data-list__label" for="gitBox">Deliver an a git box</label>
+          <div class="data-list__field data-list__field_w_258">
+            <%= f.check_box :git_box, id: 'gitBox', class:'data-list__input_checkbox' %>
+            <div class="data-list__price-git"><i class="fa fa-usd"></i>14.-</div>
+          </div>
+        </li>
       </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :delivery_date %><br>
-    <%= f.date_select :delivery_date %>
-  </div>
-  <div class="field">
-    <%= f.label :deadline %><br>
-    <%= f.text_field :deadline %>
-  </div>
-  <div class="field">
-    <%= f.label :speed %><br>
-    <%= f.number_field :speed %>
-  </div>
-  <div class="field">
-    <%= f.label :full_name %><br>
-    <%= f.text_field :full_name %>
-  </div>
-  <div class="field">
-    <%= f.label :street %><br>
-    <%= f.text_field :street %>
-  </div>
-  <div class="field">
-    <%= f.label :city %><br>
-    <%= f.text_field :city %>
-  </div>
-  <div class="field">
-    <%= f.label :state %><br>
-    <%= f.text_field :state %>
-  </div>
-  <div class="field">
-    <%= f.label :country %><br>
-    <%= f.text_field :country %>
-  </div>
-  <div class="field">
-    <%= f.label :zip %><br>
-    <%= f.text_field :zip %>
-  </div>
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :tel %><br>
-    <%= f.text_field :tel %>
-  </div>
-  <div class="field">
-    <%= f.label :info %><br>
-    <%= f.text_area :info %>
-  </div>
-  <div class="field">
-    <%= f.label :git_box %><br>
-    <%= f.check_box :git_box %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+    <%= f.submit style: 'display: none' %>
+<%end%>

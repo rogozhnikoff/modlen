@@ -14,6 +14,19 @@ class Variant < ActiveRecord::Base
     self.colors.each do |color|
       str+= "#{color.name} & "
     end
-    str.slice(0,str.length-3);
+    str.slice(0,str.length-3)
   end
+  def get_price (cur)
+    (self.product.price * cur.rate).ceil
+  end
+  def sleeves_price (cur)
+    (self.product.sleeves_price * cur.rate).ceil
+  end
+  def collar_price (cur)
+    (self.product.collar_price * cur.rate).ceil
+  end
+  def skirt_price (cur)
+    (self.product.skirt_price * cur.rate).ceil
+  end
+
 end

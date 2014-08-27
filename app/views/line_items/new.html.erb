@@ -2,19 +2,9 @@
 
 <div class="option-breadcrumb">
   <div class="breadcrumb-wrap breadcrumb-wrap_offset left">
-    <ul class="breadcrumb">
-      <li class="breadcrumb__item"><a class="breadcrumb__link" href="#">CUSTOM FIT</a></li>
-      <li class="breadcrumb__item"><i class="breadcrumb__arrow"></i></li>
-      <li class="breadcrumb__item"><a class="breadcrumb__link breadcrumb__link_active" href="#">CART</a></li>
-      <li class="breadcrumb__item"><i class="breadcrumb__arrow"></i></li>
-      <li class="breadcrumb__item"><a class="breadcrumb__link breadcrumb__link_next" href="#">CHECKOUT</a></li>
-    </ul>
+    <%= render partial: 'orders/bread_crumbs', locals: {page: 'size'} %>
   </div>
-  <div class="currency left">
-    <p class="currency__text currency__text_bl"><i class="fa fa-eur"></i></p>
-    <p class="currency__text currency__text_border active"><i class="fa fa-usd"></i></p>
-    <p class="currency__text currency__text_br"><i class="fa fa-gbp"></i></p>
-  </div>
+  <%= render partial: 'orders/currency', locals: {currency: @currency.code, item:@line_item.variant} %>
 </div>
 <div class="option">
 <div class="option__left">
@@ -70,20 +60,20 @@
 <div class="option__option-list">
   <ul class="option-list">
     <li class="option-list__item">
-      <a href="#" class="option-list__link option-list__link_c_green dashed"><u>No crystals</u></a>
+      <a href="#" class="option-list__link option-list__link_c_green <%= 'active' if @line_item.crystal_type== 'No crystals' %> dashed"><u>No crystals</u></a>
     </li>
     <li class="option-list__item">
-      <a href="#" class="option-list__link option-list__link_c_green active dashed"><u>Basic</u></a>
+      <a href="#" class="option-list__link option-list__link_c_green <%= 'active' if @line_item.crystal_type== 'Basic' %> dashed"><u>Basic</u></a>
     </li>
     <li class="option-list__item">
-      <a href="#" class="option-list__link option-list__link_c_green dashed"><u>Swarowski</u></a></li>
+      <a href="#" class="option-list__link option-list__link_c_green <%= 'active' if @line_item.crystal_type== 'Swarowski' %> dashed"><u>Swarowski</u></a></li>
     <li class="option-list__item">
       <div class="option-list__count">
         <div class="option-list__arrow">
           <a href="#" class="option-list__arrow-up"></a>
           <a href="#" class="option-list__arrow-down"></a>
         </div>
-        <div class="option-list__info"><span class="option-list__info_fw">1000 </span> crystals</div>
+        <div class="option-list__info"><span class="option-list__info_fw"><%= @line_item.crystal_amount %> </span> crystals</div>
       </div>
     </li>
     <li class="option-list__item option-list__item_position">
@@ -157,21 +147,13 @@
 <%= render 'form' %>
 </div>
 
-<div class="option__request">
-  <div class="option__special-request">Special request</div>
-  <div class="option__textarea-wrap">
-    <textarea name="special" id="specialRequest" cols="20" rows="5" class="option__textarea-special"
-              placeholder="If you have already discussed the details
-              of your order, please duplicate the result here"></textarea>
-  </div>
-</div>
 
 </div>
 </div>
 </div>
 
 <div class="option__right">
-  <div class="option__price"><i class="fa fa-usd"></i>119.-</div>
+  <div class="option__price"><i class="fa fa-<%= @currency.code %>"></i><%=@line_item.get_price @currency%>.-</div>
 
 </div>
 
@@ -192,11 +174,11 @@
 
       <div class="summary__left summary__left_w_28">
         <div class="price">
-          <div class="price__amount"><i class="fa fa-usd"></i>107.-</div>
+          <div class="price__amount"><i class="fa fa-<%= @currency.code %>"></i><%=@order.full_price(@currency)%>.-</div>
         </div>
       </div>
       <div class="summary__center">
-        <a href="#" class="btn btn_green btn_box-shadow left"><span class="btn_in-shadow">Next step</span></a>
+        <a href="#" id= "next_step" class="btn btn_green btn_box-shadow left"><span class="btn_in-shadow">Next step</span></a>
       </div>
       <div class="summary__right">
         <div class="summary__img">

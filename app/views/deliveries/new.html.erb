@@ -1,5 +1,158 @@
-<h1>New delivery</h1>
+<div class="delivery-wrap">
 
-<%= render 'form' %>
+<div class="delivery-top">
+  <div class="breadcrumb-wrap breadcrumb-wrap_ml_220 breadcrumb-wrap_w_646 left">
+    <%= render partial: 'orders/bread_crumbs', locals: {page: 'cart'} %>
+  </div>
 
-<%= link_to 'Back', deliveries_path %>
+    <%= render partial: 'orders/currency', locals: {currency: @currency.code, item: ''} %>
+</div>
+<%@order.line_items.each do |line_item|
+if line_item.status != 'canceled'
+%>
+    <%= render partial: 'line_item', locals: {line_item: line_item, cur: @currency} %>
+<%else%>
+    <%= render partial: 'canceled_item', locals: {line_item: line_item, cur: @currency} %>
+<%end; end%>
+
+
+
+<div class="info">
+  <div class="info__discount">
+    <div class="info__discount-text">When your order 5 leotards tou get 3% discount</div>
+    <div class="info__arrow-wrap">
+      <div class="info__another-arrow">
+        <a class="info__another-link link" href="#"><u>Buy Another Four</u></a>
+      </div>
+    </div>
+  </div>
+
+
+  <form id = "upperForm">
+    <div class="info__calendar">
+      <label class="info__label-time" for="inputTime">
+        When do you need the order
+        <input type="text" id="inputTime" class="input info__input-time"/>
+      </label>
+      <a class="info__calendar-link dashed" href="#"><u>Chose on calendar</u></a>
+    </div>
+
+    <div class="info__deadline">
+      <p class="info__sewing">Deadline sewing</p>
+
+      <div class="info__deadline-radio">
+        <input type="radio" id="weeks" name="deadline" value="3-4 weeks" class="deadline-radio"/>
+        <label for="weeks" class="deadline-label"></label>
+        <label for="weeks" class="info__label">3-4 weeks</label>
+      </div>
+      <div class="info__deadline-radio">
+        <input type="radio" id="days" name="deadline" value="3-4 days" class="deadline-radio" checked/>
+        <label for="days" class="deadline-label"></label>
+        <label for="days" class="info__label">3-4 days</label>
+      </div>
+
+      <div class="info__price"><i class="fa fa-usd"></i>43.-</div>
+    </div>
+  </form>
+
+
+  <div class="info__sign-user">
+    <span class="info__sign-as">Signed in as</span>
+    <a class="info__user-name link" href="#"><u>Alexandr Levitsky</u></a>
+    <a class="info__sign-out dashed" href="#"><u>Sign out</u></a>
+  </div>
+
+</div>
+
+
+
+
+
+<div class="delivery">
+
+  <div class="delivery__left">
+    <p class="delivery__shipping">
+      Delivery usually takes 7 basic days, but sometimes 8. It's more stable variant of shipping your postage
+      for 7-8 days.
+      <a href="#" class=" delivery__ems-link link"><u>EMS website</u></a>
+    </p>
+
+  </div>
+
+  <div class="delivery__center">
+    <h4 class="delivery__head">Secure delivery of the leotards №
+      <a href="#" class="delivery__order-num">24</a>,
+      <a href="#" class="delivery__order-num">39</a>,
+      <a href="#" class="delivery__order-num">28</a>
+    </h4>
+
+    <div class="delivery__subtitle">Make 1 shopping address
+      <span class="delivery__item-chose"> <i class="fa fa-sort"></i>for all item</span>
+      <span class="delivery__subtitle-info">We can send this item with another one together</span>
+    </div>
+
+
+
+    <div class="delivery__data-list">
+      <%= render 'form' %>
+    </div>
+
+  </div>
+
+</div>
+
+
+<div class="delivery-total">
+  <div class="bonus">
+    <div class="bonus__head">Order more & get bonus</div>
+    <table>
+      <tr class="bonus__quantity"><td>Quantity</td><td>Discount</td></tr>
+      <tr><td>5-9</td><td>4%</td></tr>
+      <tr><td>9-19</td><td>9%</td></tr>
+      <tr><td>19-30</td><td>12%</td></tr>
+    </table>
+  </div>
+
+  <div class="summary summary_br summary_inline" style="width: 534px">
+
+    <div class="summary__head summary__head_br-top">
+      <span class="summary__head_fw">Leotards Total</span> without 20% tax, 2,5% transaction & sheeping fees
+    </div>
+
+    <div class="summary__inner summary__inner_br_top">
+      <div class="summary__left">
+        <div class="price">
+          <div class="price__amount"><i class="fa fa-<%= @currency.code %>"></i><%= @order.full_price @currency%>.-</div>
+        </div>
+      </div>
+
+      <div class="summary__center">
+        <a href="#" id = "submit_delivery" class="btn btn_green btn_box-shadow left"><span class="btn_in-shadow">Next step</span></a>
+      </div>
+
+      <div class="summary__right">
+        <p class="summary__info summary__info_fs summary__info_padding">To the payment</p>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="cancel cancel_offset">
+    <div class="cancel__left cancel__left_w_140">
+      <a href="#" class="cancel__order-link">Cancel order</a>
+    </div>
+    <div class="cancel__right">
+      <p class="cancel__specify">It remains to specify:
+        <a href="#" class="cancel__red-link dashed"><u>City</u></a>,
+        <a href="#" class="cancel__red-link dashed"><u>Street address</u></a>,
+        <a href="#" class="cancel__red-link dashed"><u>Country</u></a>,
+        <a href="#" class="cancel__red-link dashed"><u>Zip code</u></a>,
+        <a href="#" class="cancel__red-link dashed"><u>Email</u></a>
+      </p>
+    </div>
+  </div>
+
+</div>
+
+
+</div>
