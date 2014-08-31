@@ -27,7 +27,7 @@
 
           <div class="order-info__all-item order-info__r_mr_87">
             <%@order.line_items.each do |item|%>
-                <%= render(partial: 'item', locals: {item:item}) unless item.status == 'canceled'%>
+                <%= render(partial: 'item', locals: {item:item, order: @order}) unless item.status == 'canceled'%>
             <%end%>
 
           </div>

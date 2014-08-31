@@ -15,11 +15,10 @@
         </div>
     <%end%>
     <%=link_to( variant, class: 'item__img-link item__img-link_bs') do%>
-
-      <img data-lazy-src=<%= image_url variant.pictures.find_by(order: 0).image%> alt="Rhythmic"/>
-
+    <%pic =variant.pictures.find_by(order: 0)%>
+      <img data-lazy-src=<%= image_url pic.image(:main_page)%> data-size= <%= "245:#{245*pic.size.height/pic.size.width}" %> alt="Rhythmic"/>
       <div class="item__name-link-wrap">
-        <p class="item__name-link">Rhythmic Gymnastics Leotard #29</p>
+        <p class="item__name-link">Rhythmic Gymnastics Leotard #<%= product.name %></p>
       </div>
       <%if variant.stock.include? 'Stock' %>
           <div class="item__stock-img"></div>

@@ -7,7 +7,12 @@ var     block = $('#id_<%=@block%>').attr('class', 'item masonry-brick variant_<
         heart = $('.variant_<%=@variant.id%> .item__like-off');
 
 heart.replaceWith('<%=escape_javascript render partial: 'products/like_heart', locals: {variant: @variant}%>');
-img.attr('src','<%=image_url @variant.pictures.find_by(order: 0).image%>');
+<%pic = @variant.pictures.find_by(order: 0)%>
+img.attr({src : '<%=image_url pic.image%>'});
+img.css({
+    width: 245,
+    height: <%= 245*pic.size.height/pic.size.width %>
+});
 href = href.slice(0,href.indexOf('ts/')+3)+<%=@variant.id%>;
 a.attr('href', href);
 a.find('.item__stock-img').remove();

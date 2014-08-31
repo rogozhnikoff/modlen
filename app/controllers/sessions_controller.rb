@@ -17,7 +17,7 @@ class SessionsController < Devise::SessionsController
       guest = Guest.new
     end
     add_variants resource, guest
-    return render json: {success: true}
+    return render json: {success: true, user: resource}
   end
 
   def failure

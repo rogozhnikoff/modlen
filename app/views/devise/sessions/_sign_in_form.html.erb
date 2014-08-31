@@ -22,10 +22,8 @@
         </div>
 
       <div class="sign-in__row">
-<!--
-        <a href="#" class="btn btn_white"><span class="btn_in-shadow">Sign in</span></a>
--->
-        <%= f.submit 'Sign in', class: 'btn btn_white' %>
+        <a href="#" class="btn btn_white login_modal_a"><span class="btn_in-shadow">Sign in</span></a>
+        <%= f.submit 'Sign in', style: 'display:none' %>
         <a href="#" class="sign-in__new sign-in__new_ml dashed"><u>Sign up as a new customer</u></a>
       </div>
       <%end%>

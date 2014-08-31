@@ -47,7 +47,11 @@
         <span class="measure-list__num">8</span>
         <a class="measure-list__link <%= 'measure-list__link_active' if @line_item.collar_present%> link dashed" href="#"><u>Collar</u></a>
         <a class="measure-list__link <%= 'measure-list__link_active' unless @line_item.collar_present%> link dashed" href="#"><u>No collar</u></a>
-        <%= f.text_field :collar, class: 'input measure-list__input', id: 'Collar'%>
+        <%if @line_item.collar_present%>
+            <%= f.text_field :collar, class: 'input measure-list__input', id: 'Collar'%>
+        <%else%>
+            <%= f.text_field :collar, class: 'input measure-list__input', disabled:true, id: 'Collar'%>
+        <%end%>
         <div class="item__price item__price_collar <%='item__price_strike' unless @line_item.collar_present%>"><i class="fa fa-<%=@currency.code%>"></i><%=@line_item.collar_price @currency%>.-</div>
       </li>
       <li class="measure-list__item">
@@ -78,7 +82,11 @@
         <span class="measure-list__num">14</span>
         <a class="measure-list__link <%= 'measure-list__link_active' if @line_item.sleeves_present%> link dashed" href="#"><u>Sleeves</u></a>
         <a class="measure-list__link <%= 'measure-list__link_active' unless @line_item.sleeves_present%> link dashed" href="#"><u>No sleeves</u></a>
-        <%= f.text_field :sleeves, class: 'input measure-list__input', id: 'sleeve'%>
+        <%if @line_item.sleeves_present%>
+            <%= f.text_field :sleeves, class: 'input measure-list__input', id: 'sleeve'%>
+        <%else%>
+            <%= f.text_field :sleeves, class: 'input measure-list__input', disabled:true, id: 'sleeve'%>
+        <%end%>
         <span class="option__measure-depicted">as depicted</span>
         <div class="item__price item__price_sleeves <%='item__price_strike' unless @line_item.sleeves_present%>"><i class="fa fa-<%=@currency.code%>"></i><%=@line_item.sleeves_price @currency%>.-</div>
       </li>
@@ -87,7 +95,11 @@
         <span class="measure-list__num">15</span>
         <a class="measure-list__link <%= 'measure-list__link_active' if @line_item.skirt_present%> link dashed" href="#"><u>Skirt</u></a>
         <a class="measure-list__link <%= 'measure-list__link_active' unless @line_item.skirt_present%> link dashed" href="#"><u>No skirt</u></a>
+        <%if @line_item.skirt_present%>
         <%= f.text_field :skirt, class: 'input measure-list__input', id: 'skirt'%>
+        <%else%>
+        <%= f.text_field :skirt, class: 'input measure-list__input', disabled:true, id: 'skirt'%>
+        <%end%>
         <div class="item__price item__price_skirt <%='item__price_strike' unless @line_item.skirt_present%>"><i class="fa fa-<%=@currency.code%>"></i><%=@line_item.skirt_price @currency%>.-</div>
       </li>
       <li class="measure-list__item">

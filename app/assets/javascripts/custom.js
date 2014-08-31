@@ -204,6 +204,10 @@ var ready = function(){
     });
 
 //popup
+    $('a.login_modal_a').click(function(ev) {
+        ev.preventDefault();
+        $(this).next().click();
+    });
 
 
     var popupLink = $('.head__my-link'),
@@ -214,12 +218,14 @@ var ready = function(){
         blur = 'blurJS';
 
     popupLink.click(function(e){
-        e.preventDefault();
-        popup.addClass('active');
-        head
-            .add(head)
-            .add(footer)
-            .addClass(blur)
+        if (popupLink.text() == 'My Modlen') {
+            e.preventDefault();
+            popup.addClass('active');
+            head
+                .add(head)
+                .add(footer)
+                .addClass(blur)
+        }
     });
     close.click(function(e){
         e.preventDefault();
@@ -305,10 +311,6 @@ var ready = function(){
             parent.find('label').removeClass(wrongLabel);
         }
     });
-};
-
-//masonry
-$(window).load(function(){
     $('#container').masonry({
 // указываем элемент-контейнер в котором расположены блоки для динамической верстки
         itemSelector: '.item',
@@ -327,7 +329,29 @@ $(window).load(function(){
         }
 // опции анимации - очередь и продолжительность анимации
     });
-});
+//masonry
+    $(window).load(function(){
+        $('#container').masonry({
+// указываем элемент-контейнер в котором расположены блоки для динамической верстки
+            itemSelector: '.item',
+            isFitWidth: true,
+            columnWidth: 320,
+// указываем класс элемента являющегося блоком в нашей сетке
+            singleMode: false,
+// true - если у вас все блоки одинаковой ширины
+            isResizable: true,
+// перестраивает блоки при изменении размеров окна
+            isAnimated: true,
+// анимируем перестроение блоков
+            animationOptions: {
+                queue: false,
+                duration: 500
+            }
+// опции анимации - очередь и продолжительность анимации
+        });
+    });
+};
+
 function validateOption($el) {
     var value = parseInt($el.val());
     if ($el.parent().find('label').text().indexOf('name')!=-1) return true;

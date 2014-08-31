@@ -25,8 +25,8 @@
     <div class="box box_bt" style="width: 557px">
       <div class="box__inner">
 
-        <div class="order__number">Order #973-1</div>
-        <a href="#" class="order__name-link order__name-link_fs_17">Rhythmic Gymnastics Leotard № 24</a>
+        <div class="order__number">Order #<%= line_item.order.id %>-1</div>
+        <a href="#" class="order__name-link order__name-link_fs_17">Rhythmic Gymnastics Leotard № <%= line_item.variant.product.name %></a>
         <a href="#" class="order__color-switch order__color-switch_pink">Pink & Green</a>
 
         <p class="order__text"><%= line_item.variant.product.texts.find_by(language: 'en').description %></p>

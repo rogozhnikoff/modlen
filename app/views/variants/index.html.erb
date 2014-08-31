@@ -1,0 +1,11 @@
+
+<div class="item-main">
+  <div id="container" class="">
+    <%@variants.each_with_index  do |variant, block|%>
+        <%=render partial: 'products/item', locals: {variant:variant, block: block, cur: @currency}%>
+    <%end%>
+
+  </div>
+
+
+</div>

@@ -46,4 +46,7 @@ class VariantsController < ApplicationController
       format.js
     end
   end
+  def index
+    @variants = @guest.variants
+  end
 end

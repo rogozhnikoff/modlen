@@ -13,7 +13,8 @@
     </div>
 
   <div class="popup-sign__btn-wrap">
-    <%=f.submit 'Sign in', class: 'btn btn_white', remote: true%>
+    <a href="#" class="btn btn_white login_modal_a"><span class="btn_in-shadow">Sign in</span></a>
+    <%=f.submit 'Sign in', style:'display: none', remote: true%>
   </div>
   <%end%>
 

@@ -5,11 +5,13 @@
 $ ->
   $("form#new_user").bind "ajax:success", (e, data, status, xhr) ->
     if data.success
-      alert 'Sign in by modal Succssesful'
+      $('.popup-sign__close').click()
+      $('.head__my-link u').text(data.user.email)
     else
       alert('failure!')
   $("form#user_form_main").bind "ajax:success", (e, data, status, xhr) ->
     if data.success
-      alert 'Sign in by main form Succssesful'
+      $('.head__my-link u').text(data.user.email)
+      $('.option-sign-in').remove()
     else
       alert('failure!')

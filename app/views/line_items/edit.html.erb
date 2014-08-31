@@ -47,8 +47,8 @@
     <div class="box box_bt" style="width: 557px">
       <div class="box__inner box__inner_pt_21">
 
-        <div class="order__number">Order #973-1</div>
-        <a href="#" class="order__name-link order__name-link_fs_17">Rhythmic Gymnastics Leotard #24</a>
+        <div class="order__number">Order #<%= @order.id %>-1</div>
+        <a href="#" class="order__name-link order__name-link_fs_17">Rhythmic Gymnastics Leotard #<%= @line_item.variant.product.name %></a>
             <span class="option__color-switch option__color-switch_ml_10">
               <i class="fa fa-sort"></i><i class="fa fa-circle"></i>Pink & Green</span>
 
@@ -160,8 +160,7 @@
 </div>
 
 
-
-<%= render partial: 'devise/sessions/sign_in_form' %>
+<%= render partial: 'devise/sessions/sign_in_form' if current_user.nil?%>
 
 <div class="option-total">
 
