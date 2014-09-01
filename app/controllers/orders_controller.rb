@@ -2,6 +2,9 @@ class OrdersController < InheritedResources::Base
   before_action :destroy_temp_items
   def show
   end
+  def index
+    @orders = current_user.orders
+  end
   def change_currency
     session[:currency] = params[:cur]
     @line_item = LineItem.find(params[:item]) unless params[:item] == ''

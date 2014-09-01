@@ -134,6 +134,12 @@ GEM
       activesupport (>= 3.0.0)
       cocaine (~> 0.5.3)
       mime-types
+    paypal-sdk-core (0.3.0)
+      multi_json (~> 1.0)
+      xml-simple
+    paypal-sdk-rest (0.7.0)
+      paypal-sdk-core (~> 0.3.0)
+      uuidtools (~> 2.1)
     polyamorous (1.0.0)
       activerecord (>= 3.0)
     polyglot (0.3.5)
@@ -201,8 +207,10 @@ GEM
     uglifier (2.5.3)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    uuidtools (2.1.5)
     warden (1.2.3)
       rack (>= 1.0)
+    xml-simple (1.1.4)
 
 PLATFORMS
   x64-mingw32
@@ -217,6 +225,7 @@ DEPENDENCIES
   jquery-rails
   omniauth-facebook
   paperclip (~> 3.5.3)
+  paypal-sdk-rest
   rails (= 4.1.4)
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)

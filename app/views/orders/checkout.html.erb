@@ -124,6 +124,7 @@
 
       <div  class="payment__card payment__card_second">
         <h2>{TAb2}</h2>
+        <%= link_to 'buy me', @order.paypal_url('http://google.com', payment_notifications_url, @currency) %>
         <p>Lore Ipsum, take this place and show, what do you want:)</p>
         <p>Lore Ipsum, take this place and show, what do you want:)</p>
       </div>

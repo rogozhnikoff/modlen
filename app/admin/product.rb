@@ -29,17 +29,23 @@ ActiveAdmin.register Product do
      f.input :crystal_amount, value: 1000
    end
    f.inputs 'sleeves' do
+=begin
      f.input :sleeves
+=end
      f.input :sleeves_present
      f.input :sleeves_price
   end
   f.inputs 'skirt' do
+=begin
      f.input :skirt
+=end
      f.input :skirt_present
      f.input :skirt_price
   end
   f.inputs 'collar' do
+=begin
      f.input :collar
+=end
      f.input :collar_present
      f.input :collar_price
    end
@@ -96,4 +102,7 @@ def init_defaults
   @product.crystal_type = Product::CRYSTAL_TYPES[0]
   @product.stock_for_sale = Product::STOCK_TYPES[0]
   @product.texts.new({language: 'en'})
+  @product.collar_present = true
+  @product.skirt_present = true
+  @product.sleeves_present = true
 end
