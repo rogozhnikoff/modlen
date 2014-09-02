@@ -20,6 +20,7 @@ class Order < ActiveRecord::Base
     lng
   end
     def paypal_url(return_url, notify_url, currency)
+      del = self.delivery
       values = {
           :business => 'kaboom.ua-facilitator@gmail.com',
           :cmd => '_cart',
@@ -27,15 +28,12 @@ class Order < ActiveRecord::Base
           :return => return_url,
           :invoice => id,
           :notify_url => notify_url,
-          :currency_code => currency.code.upcase
-=begin
-          :city => 'San Jose',
-          address1: '1 Main St',
-          country: 'United States',
-          sate: 'CA',
-          zip: '95131',
-          address_override: 1
-=end
+          :currency_code => currency.code.upcase,
+          :city => del.city,
+          address1: del.street,
+          country: del.country,
+          sate: del.state,
+          zip: del.zip
       }
       self.line_items.each_with_index do |item, index|
         values.merge!({
