@@ -10,15 +10,13 @@
     </ul>
   </div>
 </div>
-<%= debug @guest.orders %>
-
 
 <div class="processing-order__wrap">
   <div class="order-info" id="">
     <div class="box box_bt" style="width: 557px">
       <%@orders.each do |order|%>
       <%= render partial: 'order_processing', locals: {order: order} %>
-      <%end%>
+      <%end if @orders%>
     </div>
   </div>
 </div>

@@ -1,5 +1,5 @@
 class LineItemsController < InheritedResources::Base
-  before_action :current_line_item, only: [:edit, :update, :destroy, :cancel, :put_back]
+  before_action :current_line_item, only: [:edit, :update, :destroy, :cancel, :put_back, :plus_one]
 
   def new
     @temp_item = LineItem.find(params[:id])
@@ -73,6 +73,19 @@ class LineItemsController < InheritedResources::Base
     @line_item.save
     respond_to do |format|
       format.js {render 'cancel'}
+    end
+  end
+  def plus_one
+    @new_item = LineItem.create!({variant_id: @line_item.variant.id,
+                                  order_id: @order.id,
+                                  crystal_type: @line_item.variant.product.crystal_type,
+                                  crystal_amount: @line_item.variant.product.crystal_amount,
+                                  price: @line_item.variant.product.price,
+                                  collar_present: @line_item.variant.product.collar_present,
+                                  skirt_present: @line_item.variant.product.skirt_present,
+                                  sleeves_present: @line_item.variant.product.sleeves_present})
+    respond_to do |format|
+      format.js
     end
   end
   def destroy

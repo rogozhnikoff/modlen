@@ -27,13 +27,15 @@ class Order < ActiveRecord::Base
           :return => return_url,
           :invoice => id,
           :notify_url => notify_url,
-          :currency_code => currency.code.upcase,
+          :currency_code => currency.code.upcase
+=begin
           :city => 'San Jose',
           address1: '1 Main St',
           country: 'United States',
           sate: 'CA',
           zip: '95131',
           address_override: 1
+=end
       }
       self.line_items.each_with_index do |item, index|
         values.merge!({

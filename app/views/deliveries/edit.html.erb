@@ -1,5 +1,4 @@
 <div class="delivery-wrap">
-
   <div class="delivery-top">
     <div class="breadcrumb-wrap breadcrumb-wrap_ml_220 breadcrumb-wrap_w_646 left">
       <%= render partial: 'orders/bread_crumbs', locals: {page: 'cart'} %>
@@ -11,8 +10,6 @@
     if line_item.status != 'canceled'
   %>
           <%= render partial: 'line_item', locals: {line_item: line_item, cur: @currency} %>
-      <%else%>
-          <%= render partial: 'canceled_item', locals: {line_item: line_item, cur: @currency} %>
       <%end; end%>
 
 

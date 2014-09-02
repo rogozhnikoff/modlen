@@ -3,7 +3,7 @@ class OrdersController < InheritedResources::Base
   def show
   end
   def index
-    @orders = current_user.orders
+    @orders = current_user.orders if current_user
   end
   def change_currency
     session[:currency] = params[:cur]

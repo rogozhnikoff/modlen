@@ -1,7 +1,8 @@
+<%delivery = order.delivery%>
 <div class="order-info__inner">
 
   <div class="order-info__top order-info__top_mb_19">
-    <div class="order-info__head-number open">Order #973 <i class="order-info__icon fa fa-minus-square-o"></i></div>
+    <div class="order-info__head-number open">Order #<%= order.id %> <i class="order-info__icon fa fa-minus-square-o"></i></div>
     <p class="order-info__status"><span>Status.</span> Selection completed</p>
   </div>
   <div id="closed">
@@ -11,31 +12,15 @@
       <p class="order-info__subsection order-info__subsection_pt">Your order</p>
 
       <div class="order-info__all-item order-info__r_mr_87">
-
+        <%order.line_items.each do |item| var = item.variant %>
         <div class="order-info__item">
-          <a href="#" class="order-info__img-link"><img src="../../img/icon/item-small.png" alt=""/></a>
+          <a href="#" class="order-info__img-link"><img src="<%= var.pictures.find_by_order(0).image.url(:micro) %>" alt=""/></a>
           <div class="order-info__item-wrap">
-            <div class="order__number">Order #973-1 Custom fit</div>
-            <a href="#" class="order__name-link order__name-link_fs_15">Rhythmic Gymnastics Leotard № 24</a>
+            <div class="order__number">Order #<%= order.id %>-1 Custom fit</div>
+            <a href="#" class="order__name-link order__name-link_fs_15">Rhythmic Gymnastics Leotard №<%= var.product.name %> </a>
           </div>
         </div>
-
-        <div class="order-info__item">
-          <a href="#" class="order-info__img-link"><img src="../../img/icon/item-small.png" alt=""/></a>
-          <div class="order-info__item-wrap">
-            <div class="order__number">Order #973-1 Adult M</div>
-            <a href="#" class="order__name-link order__name-link_fs_15">Rhythmic Gymnastics Leotard № 24</a>
-          </div>
-        </div>
-
-        <div class="order-info__item">
-          <a href="#" class="order-info__img-link"><img src="../../img/icon/item-small.png" alt=""/></a>
-          <div class="order-info__item-wrap">
-            <div class="order__number">Order #973-1 Adult S</div>
-            <a href="#" class="order__name-link order__name-link_fs_15">Rhythmic Gymnastics Leotard № 24</a>
-          </div>
-        </div>
-
+            <%end%>
       </div>
     </div>
 
@@ -43,12 +28,12 @@
       <p class="order-info__subsection">Delivery</p>
 
       <div class="order-info__delivery-address total__r_w_78">
-        <p class="order-info__user-name">MartinBrown <a href="#" class="order-info__user-mail">martin@brown.com</a></p>
+        <p class="order-info__user-name"><%= delivery.full_name %> <a href="#" class="order-info__user-mail"><%= delivery.email %></a></p>
         <p class="order-info__address">
-          64 Hawthorne Crescent
-          Dodworth, Barnsley
-          South Yorkshire, S75 3JZ
-          United Kingdom
+          <%= delivery.street %>
+          <%= delivery.city %>
+          <%= delivery.state %>, <%= delivery.zip %>
+          <%= delivery.country %>
         </p>
       </div>
     </div>
@@ -56,7 +41,7 @@
 
     <div class="order-info__paid">
       <p class="order-info__subsection order-info__subsection_pt_21">Paid</p>
-      <div class="order-info__price"><i class="fa fa-usd"></i>357.-</div>
+      <div class="order-info__price"><i class="fa fa-<%= @currency.code %>"></i><%= order.full_price @currency %>.-</div>
     </div>
 
     <div class="order-info__guarantee">

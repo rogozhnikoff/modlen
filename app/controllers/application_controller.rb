@@ -39,14 +39,16 @@ class ApplicationController < ActionController::Base
 
   def destroy_temp_items
     @order.line_items.each do |item|
-      item.delete if item.status == 'temp'
+      item.delete if item.status == 'temp' or item.status == 'canceled'
     end
   end
 private
   def set_order
     @order = Order.find(session[:order_id])
   rescue ActiveRecord::RecordNotFound
-    @order = Order.create!
+    @order = Order.new
+    @order.user = current_user if current_user
+    @order.save
     session[:order_id] = @order.id
   end
 end

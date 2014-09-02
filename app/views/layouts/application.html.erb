@@ -17,7 +17,7 @@
 
 <div class="pop-up-sign">
   <div class="popup-sign" style="width: 297px">
-    <%unless current_user.nil?; text = current_user.email else text = 'My Modlen' end%>
+    <%unless current_user.nil?; text = current_user.name else text = 'My Modlen' end%>
     <a class="popup-sign__modlen-link dashed" href="<%= variants_path %>"><u><%= text %></u></a>
 
     <div class="popup-sign__inner">

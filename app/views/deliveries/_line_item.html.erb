@@ -9,7 +9,7 @@
         <%= link_to cancel_line_item_path(line_item), class: 'order__cross order__cross_mb_7', method: :delete, remote: true do%>
         <i class="fa fa-times"></i>
             <%end%>
-        <a href="#" class="order__like-num order__like-num_mb_15">+1</a>
+        <%= link_to '+1', plus_one_line_item_path(line_item), class: 'order__like-num order__like-num_mb_15', method: :post, remote: true%>
         <%=render partial: 'variants/like_heart', locals: {variant: line_item.variant}%>
       </div>
     </div>

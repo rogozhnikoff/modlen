@@ -11,8 +11,6 @@
 if line_item.status != 'canceled'
 %>
     <%= render partial: 'line_item', locals: {line_item: line_item, cur: @currency} %>
-<%else%>
-    <%= render partial: 'canceled_item', locals: {line_item: line_item, cur: @currency} %>
 <%end; end%>
 
 
