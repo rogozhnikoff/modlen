@@ -1,0 +1,5 @@
+var     fullPrice = $('div.price__amount').contents().last()[0],
+        cart = $('.head__cart');
+fullPrice.textContent = '<%= @order.full_price @currency%>.-';
+cart.replaceWith('<%= escape_javascript render partial: 'layouts/cart', locals: {order:@order} %>');
+$('#line_item_<%= @line_item.id %>').after('<%= escape_javascript render partial: 'deliveries/line_item', locals: {line_item: @line_item, cur: @currency} %>');
