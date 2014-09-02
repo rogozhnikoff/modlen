@@ -5,6 +5,7 @@ item_params = [:status, :size, :age, :height, :chest, :waist, :hips, :biceps, :e
                :price, :colors_additions, :collar_present, :skirt_present, :sleeves_present]
 delivery_params = [:delivery_date, :deadline, :speed, :full_name, :street, :city, :state, :zip, :email,
                    :tel, :info, :git_box]
+permit_params :status, :user_id
   show do |order|
       attributes_table do
         row 'Cost' do order.full_price Currency.find_by_code('usd') end

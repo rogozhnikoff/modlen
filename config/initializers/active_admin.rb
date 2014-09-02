@@ -104,7 +104,9 @@ ActiveAdmin.setup do |config|
   # Default:
   config.logout_link_method = :delete
 
-
+  config.skip_before_filter :current_currency
+  config.skip_before_filter :set_order
+  config.skip_before_filter :set_guest_or_user
   # == Root
   #
   # Set the action to call for the root path. You can set different
