@@ -30,10 +30,14 @@ class Order < ActiveRecord::Base
           :notify_url => notify_url,
           :currency_code => currency.code.upcase,
           :city => del.city,
+          no_shipping: 1,
           address1: del.street,
           country: del.country,
           sate: del.state,
-          zip: del.zip
+          zip: del.zip,
+          address_override: 1,
+          first_name: del.full_name.split(' ')[0],
+          last_name: del.full_name.split(' ')[1]
       }
       self.line_items.each_with_index do |item, index|
         values.merge!({

@@ -50,6 +50,7 @@ end
   # You can have the root of your site routed with "root"
    root 'products#index'
 
+   get '*unmatched_route', :to => 'application#render_not_found'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

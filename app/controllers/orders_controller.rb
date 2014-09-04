@@ -1,5 +1,7 @@
 class OrdersController < InheritedResources::Base
   before_action :destroy_temp_items
+  load_and_authorize_resource
+
   def show
   end
   def index

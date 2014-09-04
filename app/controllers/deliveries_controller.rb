@@ -1,6 +1,7 @@
 class DeliveriesController < InheritedResources::Base
   before_action :destroy_temp_items
   before_action :get_delivery, except: [:new, :create, :index]
+  load_and_authorize_resource
   def index
     @deliveries = Delivery.all
   end
@@ -31,7 +32,7 @@ class DeliveriesController < InheritedResources::Base
     @delivery = Delivery.find params[:id]
   end
   def delivery_params
-    params.require(:delivery).permit(:delivery_date, :deadline, :speed, :full_name, :street, :city, :state, :zip, :email,
+    params.require(:delivery).permit(:delivery_date, :deadline, :speed, :full_name, :street, :city, :country, :state, :zip, :email,
                                      :tel, :info, :git_box)
   end
 

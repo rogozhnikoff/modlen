@@ -1,4 +1,5 @@
 class VariantsController < ApplicationController
+  load_and_authorize_resource
   def show
     @variant = Variant.find params[:id]
     @product = @variant.product

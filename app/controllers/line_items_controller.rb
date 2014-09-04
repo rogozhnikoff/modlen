@@ -1,5 +1,6 @@
 class LineItemsController < InheritedResources::Base
   before_action :current_line_item, only: [:edit, :update, :destroy, :cancel, :put_back, :plus_one]
+  load_and_authorize_resource
 
   def new
     @temp_item = LineItem.find(params[:id])
