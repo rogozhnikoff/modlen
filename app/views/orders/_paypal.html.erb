@@ -1,0 +1,32 @@
+<!--https://www.sandbox.paypal.com/cgi-bin/webscr-->
+<!--https://www.paypal.com/cgi-bin/webscr-->
+* <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" name="pay" id="pay" >
+   <input type="hidden" name="cancel_return" value="yandex.ua">
+   <input type="hidden" name="return" value="<%= notify %>">
+   <input type="hidden" name="rm" value="2"> <!-- 1: Гетом слать, 2: Постом слать -->
+   <input type="hidden" name="no_shipping" value="1">
+   <input type="hidden" name="cmd" value="_xclick">
+   <input type="hidden" name="invoice" value="<%= order.id %>">
+   <input type="hidden" name="business" value="kaboom.ua-facilitator@gmail.com">
+    <%item = order.line_items[0]%>
+   <input type="hidden" name="item_name" value="<%= item.variant.product.name %>">
+   <input type="hidden" name="item_number" value="<%= item.id %>">
+   <input type="hidden" name="amount" value="<%= item.get_price(cur) %>">
+
+  <%del=order.delivery%>
+  <input type="hidden" name="address1" value="<%= del.street %>" />
+  <input type="hidden" name="city" value="<%= del.city %>" />
+  <input type="hidden" name="country" value="US" />
+  <input type="hidden" name="state" value="<%= del.state %>" />
+  <input type="hidden" name="zip" value="<%= del.zip %>" />
+  <input type="hidden" name="email" value="<%= del.email %>" />
+  <input type="hidden" name="first_name" value="<%= del.full_name.split(' ')[0] %>" />
+  <input type="hidden" name="last_name" value="<%= del.full_name.split(' ')[1] %>" />
+
+  <input type="hidden" name="currency_code" value="<%= cur.code.upcase %>">
+   <!--input type="hidden" name="first_name" value="{user_name}">
+	  <input type="hidden" name="last_name" value="{user_surname}">
+	  <input type="hidden" name="email" value="{user_email}" -->
+   Press this button if you don't redirected to PayPal.
+  <input type="image" name="submit" border="0" src="https://www.paypal.com/en_US/i/btn/btn_buynow_LG.gif" alt="PayPal - The safer, easier way to pay online">
+   </form>

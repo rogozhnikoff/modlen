@@ -1,0 +1,22 @@
+<h1>Thank you for buying our Leotards</h1>
+<h2>Succsessful payment for order #<%=@order.id%></h2>
+<%@items.each do |item|%>
+<p>Leotard #<%= item.variant.product.name %></p>
+<%end%>
+<h2>Your order will be shipped to:</h2>
+<table>
+  <tr>
+    <td>Country:</td>
+    <td><%=@delivery.country %></td>
+  </tr>
+  <tr>
+    <td>City</td>
+    <td><%= @delivery.city %></td>
+  </tr>
+  <tr>
+    <td>Street</td>
+    <td><%= @delivery.street %></td>
+  </tr>
+ </table>
+<h2>Your login: <%= @customer.email %></h2>
+<h2>Your password: <%= @customer.password %></h2>

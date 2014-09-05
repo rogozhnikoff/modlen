@@ -1,0 +1,33 @@
+<div class="order-thank-top">
+
+  <div class="breadcrumb-wrap breadcrumb-wrap_w_646 left">
+    <%= render partial: 'bread_crumbs', locals: {page: 'checkout'} %>
+  </div>
+
+  <%= render partial: 'currency', locals: {currency: @currency.code, item:''} %>
+</div>
+
+<div class="order-thank-wrap">
+
+  <div class="track-order">
+    <div class="box box_bt" style="width: 557px">
+      <div class="box__inner box__inner_offset">
+        <div class="track-order__top">
+          <div class="track-order__head">Thanks for your order!</div>
+          <div class="track-order__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis,
+            consequuntur debitis quaerat quod sapiente sint? Dolores in nam nemo optio sapiente tempore? Eaque
+            expedita incidunt modi placeat
+          </div>
+        </div>
+        <div class="track-order__bottom">
+
+          <a href="<%= orders_path %>" class="btn btn_green btn_box-shadow"><span class="btn_in-shadow">Track order</span></a>
+          <span class="track-order__add-text">Additional text</span>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
