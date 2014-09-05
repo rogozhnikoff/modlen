@@ -1,29 +1,42 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="processing-order__my">
+  <div class="my-wrap">
+    <ul class="my-list">
+      <li class="my-list__item my-list__item_w_128">My orders:</li>
+      <li class="my-list__item my-list__item_w_96"><a class="my-list__link active" href="#">processing</a></li>
+      <li class="my-list__item my-list__item_w_95"><a class="my-list__link" href="#">completed</a></li>
+      <li class="my-list__item my-list__item_w_176"><a class="my-list__link" href="#">cancelled</a></li>
+      <li class="my-list__item"><a class="my-list__link" href="#">settings</a></li>
+    </ul>
+  </div>
+</div>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
+<div class="change-mail-wrap">
+  <div class="change-mail">
+    <div class="box box_bt" style="width: 557px">
+      <div class="box__inner box__inner_offset">
+        <div class="change-mail__top">
+          <%= form_for(resource, as: resource_name, url: users_update_path, method: :post) do |f| %>
+              <%= devise_error_messages! %>
+              <div class="change-mail__head change-mail__head_mb_12">Change email and/or password</div>
+              <div class="input-wrap input-wrap_mb">
+                <label for="MailChange" class="input-label input-label_pr_29">E-mail</label>
+                <%= f.email_field :email, class: 'input input_w_154', id: 'MailChange'%>
+              </div>
+              <div class="input-wrap">
+                <label for="PassChange" class="input-label">Password</label>
+                <%= f.password_field :password, id: 'PassChange', class: 'input input_w_154' %>
+              </div>
+              <%= f.submit %>
+          <%end%>
+        </div>
+        <div class="change-mail__bottom">
+          <!--<input class="btn btn_green btn_box-shadow" type="submit" value="Change"/>-->
+          <a href="#" class="btn btn_green btn_box-shadow"><span class="btn_in-shadow">Change</span></a>
+          <a href="#" class="change-mail__unsubscribe change-mail__unsubscribe_ml dashed"><u>Unsubscribe teh email news</u></a>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, autofocus: true %></div>
+</div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "off" %></div>
-
-  <div><%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
-
-  <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off" %></div>
-
-  <div><%= f.submit "Update" %></div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>

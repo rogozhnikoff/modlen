@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+
+  post 'users/update'
+
   resources :payment_notifications
 
   resources :deliveries

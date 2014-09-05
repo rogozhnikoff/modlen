@@ -10,6 +10,11 @@ class ApplicationController < ActionController::Base
     rescue_from ActiveRecord::RecordNotFound, :with => :render_not_found
     rescue_from ActionController::RoutingError, :with => :render_not_found
   end
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:account_update) { |u|
+      u.permit(:password, :password_confirmation, :current_password)
+    }
+  end
 
   #called by last route matching unmatched routes.  Raises RoutingError which will be rescued from in the same way as other exceptions.
   def raise_not_found!
