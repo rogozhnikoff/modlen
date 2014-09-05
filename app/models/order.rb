@@ -35,7 +35,9 @@ class Order < ActiveRecord::Base
           country: del.country,
           sate: del.state,
           zip: del.zip,
+=begin
           address_override: 1,
+=end
           first_name: del.full_name.split(' ')[0],
           last_name: del.full_name.split(' ')[1]
       }

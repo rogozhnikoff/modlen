@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       get :checkout
     end
     collection do
+      get :thanks
       post :change_currency
     end
   end

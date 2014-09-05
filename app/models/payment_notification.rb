@@ -9,11 +9,13 @@ class PaymentNotification < ActiveRecord::Base
     if status == "Completed"
       order.update_attribute(:status, 'Purchased')
       unless order.user
+        pass = (0...8).map { (65 + rand(26)).chr }.join
         user = User.create!(email: order.delivery.email, name: order.delivery.full_name, role: 'customer',
-                            password: 'password', password_confirmation: 'password')
+                            password: pass, password_confirmation: pass)
         order.user = user
         order.save
       end
+      OrderMailer.confirm_payment(order).deliver
     end
     end
 end

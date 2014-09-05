@@ -1,7 +1,6 @@
 class DeliveriesController < InheritedResources::Base
   before_action :destroy_temp_items
   before_action :get_delivery, except: [:new, :create, :index]
-  load_and_authorize_resource
   def index
     @deliveries = Delivery.all
   end
