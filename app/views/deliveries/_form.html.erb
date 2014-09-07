@@ -1,4 +1,4 @@
-<%= form_for(@delivery) do |f| %>
+<%= form_for(@delivery, remote: true) do |f| %>
     <%= f.hidden_field :delivery_date %>
     <%= f.hidden_field :deadline %>
     <%= f.hidden_field :speed %>
@@ -10,9 +10,9 @@
               <a href="#" class="option-list__arrow-up"></a>
               <a href="#" class="option-list__arrow-down"></a>
             </div>
-            <div class="option-list__info"><span class="option-list__info_fw">7 </span>business days</div>
+            <div class="option-list__info"><span class="option-list__info_fw"><%= @delivery.speed %> </span>business days</div>
             <span class="data-list__ems">EMS</span>
-            <div class="data-list__price"><i class="fa fa-usd"></i>65.-</div>
+            <div class="data-list__price"><i class="fa fa-<%=@currency.code %>"></i><%= get_price(@opt.speeds.find_by_days(@delivery.speed).price, @currency) %>.-</div>
           </div>
         </li>
         <li class="data-list__item data-list__item_mt_20">
@@ -81,9 +81,10 @@
           <label class="data-list__label" for="gitBox">Deliver an a git box</label>
           <div class="data-list__field data-list__field_w_258">
             <%= f.check_box :git_box, id: 'gitBox', class:'data-list__input_checkbox' %>
-            <div class="data-list__price-git"><i class="fa fa-usd"></i>14.-</div>
+            <div class="data-list__price-git <%= 'item__price_strike'unless @delivery.git_box %>"><i class="fa fa-<%=@currency.code %>"></i><%= get_price(@opt.git_box, @currency) %>.-</div>
           </div>
         </li>
       </ul>
-    <%= f.submit style: 'display: none' %>
+    <%= submit_tag 'remote_update', id: 'btn_del_update', style:'display:none' %>
+    <%= submit_tag 'go_next', id: 'btn_submit_de', style: 'display:none' %>
 <%end%>

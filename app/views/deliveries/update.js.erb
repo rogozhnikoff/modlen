@@ -1,0 +1,8 @@
+if ('<%=@commit%>' == 'remote_update') {
+  $('#upperForm .info__price').contents().last()[0].textContent = '<%= get_price(@opt.deadline_sewings.find_by(deadline: @delivery.deadline).price, @currency) %>'
+  $('.data-list__price').contents().last()[0].textContent = '<%= get_price(@opt.speeds.find_by_days(@delivery.speed).price, @currency) %>.-'
+  $('.data-list__price-git').contents().last()[0].textContent = '<%= get_price(@opt.git_box, @currency) %>.-'
+  $('.price__amount').contents().last()[0].textContent = '<%= @order.full_price @currency %>.-'
+} else {
+    window.location = '<%= checkout_order_path @order %>'
+}

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140902201749) do
+ActiveRecord::Schema.define(version: 20140906144622) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -57,6 +57,14 @@ ActiveRecord::Schema.define(version: 20140902201749) do
     t.datetime "updated_at"
   end
 
+  create_table "deadline_sewings", force: true do |t|
+    t.string   "deadline"
+    t.integer  "price"
+    t.integer  "delivery_option_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "deliveries", force: true do |t|
     t.date     "delivery_date"
     t.string   "deadline"
@@ -75,6 +83,12 @@ ActiveRecord::Schema.define(version: 20140902201749) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "price"
+  end
+
+  create_table "delivery_options", force: true do |t|
+    t.integer  "git_box"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "guests", force: true do |t|
@@ -194,6 +208,14 @@ ActiveRecord::Schema.define(version: 20140902201749) do
     t.boolean  "collar_present"
     t.boolean  "skirt_present"
     t.boolean  "sleeves_present"
+  end
+
+  create_table "speeds", force: true do |t|
+    t.integer  "days"
+    t.integer  "price"
+    t.integer  "delivery_option_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "texts", force: true do |t|

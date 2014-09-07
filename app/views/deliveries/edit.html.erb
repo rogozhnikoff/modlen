@@ -38,17 +38,17 @@
         <p class="info__sewing">Deadline sewing</p>
 
         <div class="info__deadline-radio">
-          <input type="radio" id="weeks" name="deadline" value="3-4 weeks" class="deadline-radio"/>
+          <input type="radio" id="weeks" name="deadline" value="3-4 weeks" class="deadline-radio" <%= 'checked' if @delivery.deadline == '3-4 weeks'%>/>
           <label for="weeks" class="deadline-label"></label>
           <label for="weeks" class="info__label">3-4 weeks</label>
         </div>
         <div class="info__deadline-radio">
-          <input type="radio" id="days" name="deadline" value="3-4 days" class="deadline-radio" checked/>
+          <input type="radio" id="days" name="deadline" value="3-4 days" class="deadline-radio" <%= 'checked' if @delivery.deadline == '3-4 days'%>/>
           <label for="days" class="deadline-label"></label>
           <label for="days" class="info__label">3-4 days</label>
         </div>
 
-        <div class="info__price"><i class="fa fa-usd"></i>43.-</div>
+        <div class="info__price"><i class="fa fa-<%= @currency.code %>"></i><%= get_price(@opt.deadline_sewings.find_by(deadline: @delivery.deadline).price, @currency) %>.-</div>
       </div>
     </form>
 

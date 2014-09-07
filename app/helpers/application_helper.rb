@@ -17,5 +17,9 @@ module ApplicationHelper
     new_delivery_path
   end
 
+  def get_price (price, cur)
+    return (price*cur.rate).ceil
+  end
+
 end
 

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  deadline: MyString
+  price: 1
+  delivery_option_id: 1
+
+two:
+  deadline: MyString
+  price: 1
+  delivery_option_id: 1

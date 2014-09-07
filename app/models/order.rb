@@ -10,6 +10,7 @@ class Order < ActiveRecord::Base
     self.line_items.each do |item|
       price += item.price unless (item.status == 'canceled' || item.status == 'temp')
     end
+    (price += self.delivery.price) if self.delivery
     (price * cur.rate).ceil
   end
   def cart_length
@@ -22,7 +23,7 @@ class Order < ActiveRecord::Base
     def paypal_url(return_url, notify_url, currency)
       del = self.delivery
       values = {
-          :business => 'kaboom.ua-facilitator@gmail.com',
+          :business => ' paypal@westernbid.com',
           :cmd => '_cart',
           :upload => 1,
           :return => return_url,
@@ -43,12 +44,21 @@ class Order < ActiveRecord::Base
       }
       self.line_items.each_with_index do |item, index|
         values.merge!({
-                          "amount_#{index+1}" => item.get_price(currency),
-                          "item_name_#{index+1}" => item.variant.product.name,
-                          "item_number_#{index+1}" => item.id,
-                          "quantity_#{index+1}" => 1
+                          "amount_#{index+2}" => item.get_price(currency),
+                          "item_name_#{index+2}" => item.variant.product.name,
+                          "item_number_#{index+2}" => item.id,
+                          "quantity_#{index+2}" => 1
                       })
       end
-      "https://www.sandbox.paypal.com/cgi-bin/webscr?" + values.to_query
+      values.merge!({
+                        'amount_1' => get_price(self.delivery.price, currency),
+                        'item_name_1' => 'Shipping'
+                    })
+      "https://www.paypal.com/cgi-bin/webscr?" + values.to_query
     end
+  private
+  def get_price (price, cur)
+    return (price*cur.rate).ceil
+  end
+
 end

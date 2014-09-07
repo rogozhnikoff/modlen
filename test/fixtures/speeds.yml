@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  days: 1
+  delivery_option_id: MyString
+  integer: MyString
+
+two:
+  days: 1
+  delivery_option_id: MyString
+  integer: MyString
