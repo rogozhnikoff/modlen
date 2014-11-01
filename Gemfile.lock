@@ -213,6 +213,7 @@ GEM
     xml-simple (1.1.4)
 
 PLATFORMS
+  ruby
   x64-mingw32
 
 DEPENDENCIES
